@@ -20,6 +20,13 @@
 /* @import url(ui-elements/sub-section.css?v=1.7.0); */
 
 
+/*
+ * Desarrollado por Luis David Elizarraraz Mondaca ("Davo")
+ * GitHub: https://github.com/srdavo
+ * Basado en Stepbro Software: https://stepbro.site
+ */
+
+
 :root {
   /* color-scheme: light dark; */
 }
@@ -231,5 +238,6 @@ h4{
   overflow: hidden;
   animation: height-animation-small-out 700ms;
 } */
+
 
 

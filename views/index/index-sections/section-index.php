@@ -231,8 +231,15 @@
             </button>
           </div>
 
-            
+          <div class="simple-container">
+            <button class="style-4 background on-background-text dm-sans" onclick="toggleWindow('#window-credits')" data-flip-id="animate">
+              <md-icon class="filled primary-text">info</md-icon>
+              <span id="copy-contact-email-value">Ver créditos</span>
+              <md-ripple></md-ripple>
+            </button>
           </div>
+            
+        </div>
 
       </div>
     </div>

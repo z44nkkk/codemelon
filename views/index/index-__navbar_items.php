@@ -21,6 +21,17 @@
   <div class="simple-container grow-0-1 gap-8">
     <button 
       class="nav-button"
+      data-flip-id="animate"
+      onclick="toggleWindow('#window-projects'); return false;"
+      >
+      <md-ripple></md-ripple>
+      <span class="icon-holder" >
+        <span class="material-symbols-rounded only-on-mobile">apps</span>
+      </span>
+      <span>Proyectos</span>
+    </button>
+    <button 
+      class="nav-button"
       id="direct-action-header-button" 
       data-flip-id="animate"
       onclick="toggleWindow('#window-contact'); return false;"

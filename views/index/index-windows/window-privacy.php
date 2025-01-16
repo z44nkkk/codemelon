@@ -10,7 +10,7 @@
         <span class="headline-medium weight-500 dm-sans">Política de privacidad</span>
 
         <div class="content-box light-color rounded align-center justify-center padding-32 gap-16">
-            <md-icon class="pretty small">clear_all</md-icon>
+            <md-icon class="pretty small">border_clear</md-icon>
             <span class="headline-small weight-500 dm-sans outline-text text-center line-height-1">
                 Aún estamos trabajando en esta sección. Por favor, vuelve más tarde.
             </span>

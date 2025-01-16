@@ -84,6 +84,13 @@ include_once $_SERVER['DOCUMENT_ROOT'] . BASE_URL .'back-end/config/config.php';
 
     ?>
 
+    <meta name="description" content="Empresa de desarrollo de software de verdadera calidad y enfoque en el detalle.">
+    <meta name="author" content="Luis David Elizarraraz Mondaca ('Davo')">
+    <meta name="keywords" content="codemelon, carded, Stepbro Software, stepbro, Luis David Elizarraraz Mondaca, Davo, desarrollo web, software, aplicaciones">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Codemelon">
+    <meta property="og:url" content="https://codemelon.net">
+    <meta property="og:type" content="website">
 
     
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
