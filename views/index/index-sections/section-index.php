@@ -181,7 +181,7 @@
     </div>
 
     <div class="simple-container direction-column top-margin-64 align-center on-background-text">
-      <div class="simple-container width-100 max-width-1200 flex-wrap gap-16 padding-24">
+      <div class="simple-container width-100 max-width-1200 flex-wrap gap-16 padding-24 " style="box-sizing:border-box">
         
         <div class="simple-container grow-1 basis-normal direction-column h-padding-16">
           <div class="simple-container align-center gap-8">
