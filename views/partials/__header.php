@@ -1,5 +1,5 @@
 <?php 
-define('BASE_URL', '/codemelon/');
+define('BASE_URL', '/');
 // include $_SERVER['DOCUMENT_ROOT'] . BASE_URL .'controllers/auth_controller.php';
 include_once $_SERVER['DOCUMENT_ROOT'] . BASE_URL .'back-end/config/config.php';
 // include_once $_SERVER['DOCUMENT_ROOT'] . BASE_URL ."config/session.php";
