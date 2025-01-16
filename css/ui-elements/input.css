@@ -1,0 +1,85 @@
+input{
+    padding:10px 24px;
+    border-radius:16px;
+
+    border:none;
+    outline:none;
+    background:var(--md-sys-color-surface-container-high);
+    color:var(--md-sys-color-on-background);
+    font-family: 'Roboto', sans-serif;
+
+    font-size:16px;
+    line-height: 32px;
+    cursor: pointer;
+    transition: box-shadow 0.5s, background 0.5s;
+}
+input[error]{
+    background:var(--md-sys-color-error-container);
+    color:var(--md-sys-color-on-error-container)
+}
+input:hover{
+    background:var(--md-sys-color-surface-container-highest);
+}
+input.bottom-prepared{
+    padding-bottom: 64px;
+}
+input.top-prepared{
+    padding-top: 64px;
+}
+input.rounded{
+    border-radius: 64px;
+}
+
+input.pretty{
+    padding: 24px;
+    border-radius: 24px;
+    background:var(--md-sys-color-surface-container-low);
+    font-size:24px;
+    cursor: text;
+    transition: box-shadow 0.5s, background 0.5s;
+}
+input.pretty.top-prepared{
+    padding:80px 24px;
+    padding-bottom: 24px;
+}
+input.pretty.bottom-prepared{
+    padding:80px 24px;
+    padding-top: 24px;
+}
+input.pretty.prepared{
+    padding: 80px 24px;
+}
+.input-pretty-label{
+    position:absolute;
+    color: var(--md-sys-color-on-background);
+    left:24px;
+    top:24px;
+}
+.input-pretty-button{
+    position:absolute;
+    bottom:24px;
+    right:24px;
+}
+
+input.pretty:focus{
+    box-shadow: 0px 0px 0px 3px var(--md-sys-color-outline-variant), 0px 0px 0px 0.5px rgba(0, 0, 0, 0.05), 0px 0.5px 2.5px 0px rgba(0, 0, 0, 0.30);
+}
+
+input.pretty[error]{
+    background:var(--md-sys-color-error-container);
+    color:var(--md-sys-color-on-error-container)
+}
+
+
+input.style-button{
+    padding:0 16px;
+    border-radius:64px;
+    height: 40px;
+    font-size:14px;
+    cursor:pointer;
+    background: var(--md-sys-color-surface-container-low);
+}
+input.style-button:hover{
+    background:var(--md-sys-color-surface-container-high);
+    box-shadow: 0 0 0 1px var(--md-sys-color-outline-variant) inset;
+}
