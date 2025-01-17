@@ -16,11 +16,11 @@
             <span class="body-large outline-text left-margin-16 dm-sans top-margin-24">Enlaces</span>
             <div class="simple-container flex-wrap gap-4">
                 <a class="style-4 background on-background-text dm-sans" href="https://github.com/srdavo" target="_blank" data-flip-id="animate">
-                    <span id="copy-contact-email-value">Github: srdavo</span>
+                    <span>Github: srdavo</span>
                     <md-ripple></md-ripple>
                 </a>
                 <a class="style-4 background on-background-text dm-sans" href="https://stepbro.site" target="_blank" data-flip-id="animate">
-                    <span id="copy-contact-email-value">Stepbro Software</span>
+                    <span>Stepbro Software</span>
                     <md-ripple></md-ripple>
                 </a>
             </div>

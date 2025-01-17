@@ -33,7 +33,7 @@
                 </p>
 
                 <div class="simple-container top-margin-16">
-                    <md-outlined-button href="https://https://carded.es/" target=" _blank" class="solid">Ir al proyecto <md-icon slot="icon">open_in_new</md-icon></md-outlined-button>
+                    <md-outlined-button href="https://carded.es/" target=" _blank" class="solid">Ir al proyecto <md-icon slot="icon">open_in_new</md-icon></md-outlined-button>
                 </div>
             </div>
         </div>
@@ -83,6 +83,21 @@
 
                 <div class="simple-container top-margin-16">
                     <md-outlined-button href="https://erosdev.com" target=" _blank" class="solid">Ir al proyecto <md-icon slot="icon">open_in_new</md-icon></md-outlined-button>
+                </div>
+            </div>
+        </div>
+        <div class="content-box direction-row padding-24 light-color flex-wrap">
+            <div class="simple-container grow-1 basis-normal">
+                <img src="assets/earthboundfest.png" alt="earthboundfest" class="width-100">
+            </div>
+            <div class="simple-container grow-1 basis-normal direction-column gap-8 justify-center">
+                <span class="display-medium dm-sans line-height-1 weight-500">Earthbound</span>
+                <p class="headline-small outline-text">
+                    Earthbound es un festival que fusiona fitness, música en vivo, misticismo y gastronomía gourmet. Una celebración donde el ejercicio, la música y la comida se unen para mejorar tu vitalidad y bienestar.
+                </p>
+
+                <div class="simple-container top-margin-16">
+                    <md-outlined-button href="https://https://earthboundfest.com/" target=" _blank" class="solid">Ir al proyecto <md-icon slot="icon">open_in_new</md-icon></md-outlined-button>
                 </div>
             </div>
         </div>
