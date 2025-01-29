@@ -184,11 +184,14 @@ h4{
 
 
 .sbcorp-icon{
+  display:flex;
+  gap:8px;
+  align-items: center;
   padding:8px 16px;
   max-width: fit-content;
   background:var(--md-sys-color-surface-container);
   border-radius:64px;
-  font-family: "Bricolage Grotesque", system-ui;
+  font-family: "DM Sans", system-ui;
   font-size:18px;
   font-weight: 600;
   user-select: none;

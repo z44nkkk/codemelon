@@ -17,7 +17,13 @@
             <div class="simple-container direction-column grow-1 width-100 height-100 align-center" data-form-step-1>
                 <div class="simple-container justify-center grow-1 gap-24 direction-column width-100 max-width-600" >
                     <div class="simple-container direction-column">
-                        <div class="sbcorp-icon">stepbro</div>
+                        <div class="sbcorp-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="16" viewBox="0 0 24 16" fill="none">
+                                <rect y="0.696289" width="14.6076" height="14.6076" rx="7.30381" fill="var(--md-sys-color-on-background)"/>
+                                <rect x="16.5786" y="0.696289" width="7.42162" height="14.6076" rx="3.71081" fill="var(--md-sys-color-on-background)"/>
+                            </svg> 
+                            Codemelon
+                        </div>
                         <span class="display-small weight-600 top-margin-8 on-background-text bricolage">
                             Bienvenido(a)
                         </span>
