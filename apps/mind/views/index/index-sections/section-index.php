@@ -144,13 +144,13 @@
     </div>
   </div>
 
-  <div class="simple-container direction-column position-relative">
+  <div class="simple-container direction-column position-relative manual-height-grow user-select-none">
     <img src="https://i.ibb.co/tcqqRp6/82-1x-shots-so.png" alt="full preview" class="width-100 fit-cover">
     <div class="simple-container direction-column position-absolute top-24 other-title-container">
       <span class="display-large dm-sans weight-600 line-height-1 other-title">Comenzar a usar</span>
-      <div class="content-box light-color max-width-600 hover-scale-small other-container gap-16 bottom-margin-64">
+      <div class="content-box translucid-background max-width-600 hover-scale-small other-container gap-16 bottom-margin-64">
         <p class="headline-small dm-sans line-height-1">
-          Regístrate y comienza a usar stepbro Mind hoy mismo.
+          Regístrate y comienza a usar Melon Mind hoy mismo.
         </p>
         <p class="body-large outline-text">
           Esta es una versión de prueba y que algunas funcionalidades pueden no estar disponibles.
@@ -289,20 +289,31 @@
       mix-blend-mode: difference;
       color: var(--md-sys-color-background);
     }
+    .translucid-background{
+      background: rgba(255,255,255,0.8);
+      backdrop-filter: blur(16px);
+    }
+
 
     @media (prefers-color-scheme: dark) {
       .landing-page .other-title{
         color: var(--md-sys-color-on-background) !important;
       }
+
+      .translucid-background{
+        background: rgba(0,0,0,0.8);
+      }
     }
 
-=
-
+    
 
     [only-on-mobile]{display:none;}
     [hide-on-mobile]{display:flex;}
     [hide-on-mobile][dark-mode]{display:none;}
     @media only screen and (max-width: 680px){
+      .manual-height-grow{
+        min-height:400px;
+      }
       .direction-column-on-mobile{
         flex-direction:column;
       }

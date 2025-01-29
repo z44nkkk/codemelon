@@ -26,7 +26,7 @@ import CalendarManager from './managers/calendarManager.js';
         window.TrashManager = TrashManager;
         window.CalendarManager = CalendarManager;
 
-        CalendarManager.renderCalendar(new Date());
+        CalendarManager.renderCalendar(CalendarManager.convertToLocalTimezone(new Date()));
         CalendarManager.loadViewStyle();
         
         // window.App = {

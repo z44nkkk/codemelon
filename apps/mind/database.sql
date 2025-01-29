@@ -68,13 +68,10 @@ ALTER TABLE appointments ADD COLUMN appt_price DECIMAL(10,2) DEFAULT 0 AFTER app
 ALTER TABLE appointments ADD COLUMN appt_mode TINYINT(1) DEFAULT 1 AFTER appt_price;
 ALTER TABLE appointments ADD COLUMN appt_payment_status TINYINT(1) DEFAULT 1 AFTER appt_mode;
 ALTER TABLE appointments ADD COLUMN appt_duration TIME DEFAULT '01:00:00' AFTER appt_time; 
-
--- pending
 ALTER TABLE patients MODIFY COLUMN patient_school TEXT;
 ALTER TABLE patients MODIFY COLUMN patient_school_grade TEXT;
 ALTER TABLE patients MODIFY COLUMN patient_contact_phone TEXT;
 ALTER TABLE patients MODIFY COLUMN patient_contact_email TEXT;
 ALTER TABLE patients MODIFY COLUMN patient_gender TEXT;
-
 
 

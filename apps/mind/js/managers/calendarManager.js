@@ -32,10 +32,15 @@ const calendarManager = (() => {
 
         // Create calendar days
         for(var day = 1; day <= days; day++){
-            const cellDate = new Date(year, month, day).toISOString().split('T')[0];
+            const date = new Date(year, month, day);
+            date.setHours(12); // Set to noon to avoid DST issues
+            const cellDate = new Date(date.getTime() - (date.getTimezoneOffset() * 60000))
+                .toISOString().split('T')[0];
+            console.log(`Fecha: ${cellDate}`);
+            console.log(`Día: ${day}`);
             var dayCell = document.createElement("div");
             dayCell.setAttribute("data-flip-id", "animate");
-            dayCell.setAttribute("data-day", day);
+            dayCell.setAttribute("data-day", new Date(cellDate).getDate());
             dayCell.setAttribute("data-cell-date", cellDate);
             dayCell.classList.add("calendar-day-cell");
 
@@ -129,7 +134,7 @@ const calendarManager = (() => {
     }
 
     function refreshCalendar(){
-        const date = new Date();
+        const date = convertToLocalTimezone(new Date());;
 
         const year = date.getFullYear();
         const month = date.getMonth();
@@ -225,8 +230,34 @@ const calendarManager = (() => {
         assignEventsToCalendar();
     }
 
+    function convertToLocalTimezone(date) {
+        const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+        let options = { timeZone: "UTC" };
 
+        if (timezone.includes('America')) {
+            options.timeZone = "America/New_York";
+        } else if (timezone.includes('Europe')) {
+            options.timeZone = "Europe/Madrid";
+        } else if (timezone.includes('Asia')) {
+            options.timeZone = "Asia/Tokyo";
+        }
 
+        const localDate = new Date(date.toLocaleString('en-US', { ...options, timeZoneName: 'short' }));
+        console.log(date, localDate);
+        return localDate;
+    }
+    
+    // function getLocalDate(date) {
+    //     return new Intl.DateTimeFormat('en-GB', {
+    //         year: 'numeric',
+    //         month: '2-digit',
+    //         day: '2-digit',
+    //         hour: '2-digit',
+    //         minute: '2-digit',
+    //         second: '2-digit',
+    //         timeZoneName: 'short'
+    //     }).format(date);
+    // }
 
 
 
@@ -236,7 +267,8 @@ const calendarManager = (() => {
         getCalendarRange,
         changeViewStyle,
         loadViewStyle,
-        changeDateFilter
+        changeDateFilter,
+        convertToLocalTimezone
     }
 
 })();

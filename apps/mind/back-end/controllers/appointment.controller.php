@@ -5,6 +5,7 @@ require_once("../../../../back-end/config/session.php");
 require_once("../models/Permissions.php");
 require_once("../models/ActionLog.php");
 require_once("../helpers/Pagination.php");
+require_once("../helpers/Encrypt.php");
 
 $json_data = file_get_contents('php://input');
 $data = json_decode($json_data, true);
@@ -26,6 +27,9 @@ switch ($data["op"]){
             "appt_payment_status" => $data["appt_payment_status"] ?? 1,
             "appt_mode" => $data["appt_mode"] ?? 1,
         ];
+
+        // Encrypt appt concept / note
+        $data_array["appt_concept"] = Encrypt::encrypt($data_array["appt_concept"]);
 
         $log = [
             "user_id" => $userid,
@@ -91,6 +95,9 @@ switch ($data["op"]){
             "appt_status" => $data["appt_status"],
             "row_status" => 1
         ];
+
+        // Encrypt appt concept / note
+        $data_array["appt_concept"] = Encrypt::encrypt($data_array["appt_concept"]);
 
         $log = [
             "user_id" => $userid,

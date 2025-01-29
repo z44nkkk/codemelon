@@ -1,4 +1,5 @@
 <?php
+require_once("../helpers/Encrypt.php");
 class Appointment extends ActiveRecord {
     protected static $table = "appointments";
     protected static $columns = [
@@ -153,13 +154,23 @@ class Appointment extends ActiveRecord {
         if (!$stmt->execute($params)) { return false; }
         $result = $stmt->get_result();
         if (!$result) { return false; }
-        
-        $appointments = [];
-        while($row = $result->fetch_assoc()) {
-            $appointments[] = new self($row);
+
+        $appointments = $result->fetch_all(MYSQLI_ASSOC);
+
+        foreach ($appointments as &$appt) {  
+            if (!empty($appt["appt_concept"])) {
+                $appt["appt_concept"] = Encrypt::decrypt($appt["appt_concept"]);
+            }
         }
-        
+
         return $appointments;
+        
+        // $appointments = [];
+        // while($row = $result->fetch_assoc()) {
+        //     $appointments[] = new self($row);
+        // }
+        
+        // return $appointments;
     }
 
     public static function getStats($data_array){
