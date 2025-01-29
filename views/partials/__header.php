@@ -57,7 +57,7 @@ checkSession($cookie_uid);
       
       switch ($current_url) {
         case 'mind':
-          echo "<link rel='shortcut icon' type='image/png' href='".BASE_URL."/apps/mind/assets/favicon.png'>";
+          echo "<link rel='shortcut icon' type='image/png' href='https://codemelon.net/apps/mind/assets/favicon.png'>";
           echo '<link rel="manifest" href="'.BASE_URL.'apps/mind/back-end/config/site.webmanifest" >';
           echo '
             <meta property="og:title" content="Melon Mind" />
@@ -81,7 +81,7 @@ checkSession($cookie_uid);
           ';
           break;        
         default:
-          echo "<link rel='shortcut icon' type='image/png' href='".BASE_URL."assets/icon.png'>";
+          echo "<link rel='shortcut icon' type='image/png' href='https://codemelon.net/assets/icon.png'>";
           break;
       }
 

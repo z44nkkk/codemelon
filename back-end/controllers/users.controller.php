@@ -111,7 +111,8 @@ switch ($data["op"]) {
     
         // Aquí se realiza la verificación del token JWT
         require_once '../config/google-api-php-client/vendor/autoload.php';
-
+        $client_id = "819722503345-qies2hv7hjl6ig525dtau8327qccj82a.apps.googleusercontent.com";
+        $client_secret = "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";
 
         $client = new Google\Client();
         $client->setClientId($client_id);
