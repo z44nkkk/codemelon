@@ -58,7 +58,7 @@ checkSession($cookie_uid);
       switch ($current_url) {
         case 'mind':
           echo "<link rel='shortcut icon' type='image/png' href='https://codemelon.net/apps/mind/assets/favicon.png'>";
-          echo '<link rel="manifest" href="'.BASE_URL.'apps/mind/back-end/config/site.webmanifest" >';
+          echo '<link rel="manifest" href="'.BASE_URL.'apps/mind/back-end/config/site.webmanifest?v=1" >';
           echo '
             <meta property="og:title" content="Melon Mind" />
             <meta property="og:description" content="Software profesional para psicólogos: Gestiona eficientemente pacientes, citas, expedientes clínicos, facturación y más en una sola plataforma integrada" />

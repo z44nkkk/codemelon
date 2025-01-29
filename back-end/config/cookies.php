@@ -7,7 +7,7 @@ function cookiesRedirect($cookie_uid, $current_url) {
 
   if (isset($_COOKIE[$cookie_uid])) {
     if(!isset($_SESSION["id"])){
-      header("location: ".BASE_URL."controllers/users.controller.php?cookies&desired_url=".$current_url."");
+      header("location: ".BASE_URL."back-end/controllers/users.controller.php?cookies&desired_url=".$current_url."");
       exit();
       // echo "<br>session not started and you are suppose to be redirectec to ".BASE_URL."controllers/users.controller.php?cookies&desired_url=".$current_url."<br>";
     }else{

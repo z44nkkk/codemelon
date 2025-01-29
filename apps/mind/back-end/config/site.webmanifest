@@ -3,7 +3,7 @@
   "name": "Melon Mind",
   "short_name": "Melon Mind",
   "description": "La mejor app para tomar gestionar tus citas",
-  "start_url": "../home",
+  "start_url": "../../home",
   "scope": ".",
   "icons": [
   {
