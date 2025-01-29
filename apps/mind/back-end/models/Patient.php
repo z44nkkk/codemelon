@@ -1,4 +1,5 @@
 <?php
+require_once("../helpers/Encrypt.php");
 class Patient extends ActiveRecord {
     protected static $table = "patients";
     protected static $columns = [
