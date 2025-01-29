@@ -1,0 +1,20 @@
+{
+  "display": "standalone",
+  "name": "Melon Mind",
+  "short_name": "Melon Mind",
+  "description": "La mejor app para tomar gestionar tus citas",
+  "start_url": "../home",
+  "scope": ".",
+  "icons": [
+  {
+    "src": "../../assets/icon.png",
+    "type": "image/png",
+    "sizes": "192x192"
+  },
+  {
+    "src": "../../assets/icon.png",
+    "type": "image/png",
+    "sizes": "512x512"
+  }
+  ]
+}

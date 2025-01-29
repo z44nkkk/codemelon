@@ -104,6 +104,7 @@ window.increased{
 window.semi-slim{ max-width: 800px; }
 window.slim{ max-width: 400px; }
 window.increased.slim.h-auto{ height: auto; }
+window.increased.mini.h-auto{ height: auto; }
 window.increased.semi-slim.h-auto{ height: auto; }
 :root[data-theme="dark"] window{
   box-shadow: none;
@@ -161,6 +162,7 @@ window.integrated holder{padding:24px;}
     max-width: 100%;
   }
   window.increased.slim.h-auto{ height: calc(100% + 32px); }
+  window.increased.mini.h-auto{ height: calc(100% + 32px); }
   window.increased.semi-slim.h-auto{ height: calc(100% + 32px); }
   window.increased, window.mini{
       padding-top: env(safe-area-inset-top);

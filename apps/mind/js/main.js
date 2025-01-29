@@ -1,0 +1,66 @@
+import PatientsManager from './managers/patientsManager.js';
+import ApptsManager from './managers/apptsManager.js';
+import TrashManager from './managers/trashManager.js';
+import CalendarManager from './managers/calendarManager.js';
+
+
+(async function main() {
+    try {
+        // 1. Configuración inicial
+        console.log('Iniciando aplicación...');
+        
+        // 2. Cargar datos iniciales
+        await PatientsManager.loadPatients();
+        PatientsManager.displayPatientsTable();
+
+        // ApptsManager.loadingAnimation(true, "table");
+        await ApptsManager.loadAppts();
+        ApptsManager.displayApptsTable(undefined, true);
+        ApptsManager.populateAppointmentPatientFilter();
+
+        await TrashManager.loadTrashItems();
+
+
+        window.PatientsManager = PatientsManager;
+        window.ApptsManager = ApptsManager;
+        window.TrashManager = TrashManager;
+        window.CalendarManager = CalendarManager;
+
+        CalendarManager.renderCalendar(new Date());
+        CalendarManager.loadViewStyle();
+        
+        // window.App = {
+        //     PatientsManager,
+        // }
+
+
+        // Configurar eventos globales
+        setupGlobalEvents();
+      
+        console.log('Aplicación lista.');
+    } catch (error) {
+        console.error('Error al iniciar la aplicación:', error);
+    }
+})();
+
+function setupGlobalEvents(){
+
+    document.querySelectorAll("[data-trash-opener]").forEach((button) => {
+        button.addEventListener("click", function(){
+
+            // turn on this to enable custom page to open
+            // let type = this.dataset.trashOpener;
+            // TrashManager.displayTrashTable(type);
+            TrashManager.displayTrashTable("appt");
+            TrashManager.displayTrashTable("patient");
+            toggleWindow("#window-trash");
+        });
+    });
+
+    // document.getElementById("button-open-trash").addEventListener("click", () =>{
+    //     toggleWindow("#window-trash");
+    //     TrashManager.displayTrashTable("appt");
+    //     TrashManager.displayTrashTable("patient");
+    // })
+
+}

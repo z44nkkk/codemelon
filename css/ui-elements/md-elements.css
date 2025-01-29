@@ -34,6 +34,9 @@ md-dialog#dialog-lector {
 md-filled-button:focus {
   animation: buttonClickAnimation 500ms cubic-bezier(.37,1.42,.37,1);
 }
+md-fab:focus {
+  animation: buttonClickAnimation 500ms cubic-bezier(.37,1.42,.37,1);
+}
 
 @keyframes progress-indicator-in {
   0% {
@@ -105,4 +108,14 @@ md-filled-tonal-icon-button.solid, md-filled-tonal-button.solid{
 md-filled-tonal-icon-button.solid-high, md-filled-tonal-button.solid-high{
   --md-sys-color-secondary-container: var(--md-sys-color-surface-container-high);
   --md-sys-color-on-secondary-container: var(--md-sys-color-on-surface-variant);
+}
+
+md-menu.style-modern{
+  --md-menu-container-shape: 16px;
+  position:relative !important;
+}
+md-menu.style-modern md-menu-item {
+  position:relative;
+  margin:0 8px;
+  border-radius: 8px !important;
 }

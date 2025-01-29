@@ -28,10 +28,6 @@
   padding:6px 12px;
   border-radius: 24px;
 }
-.data-line.increased{
-  padding:6px 12px;
-  border-radius: 24px;
-}
 
 .data-line.interactive:hover{
   cursor:pointer;

@@ -63,7 +63,6 @@ button.style-3:focus{
     animation: buttonClickAnimation 500ms cubic-bezier(.37,1.42,.37,1);
 }
 
-
 button.style-4, a.style-4{
     border:none;
     outline: none;
@@ -78,5 +77,3 @@ button.style-4, a.style-4{
     padding:8px 16px;
     cursor:pointer;
 }
-
-    

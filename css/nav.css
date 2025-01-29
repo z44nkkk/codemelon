@@ -9,7 +9,10 @@ nav{
   padding:24px 12px;
   gap:8px;
   z-index: 1;
+  /* overflow: auto; */
 }
+/* nav button.nav-button.label-button{display:none;}
+nav button.nav-button.nav-action-button{display: none;} */
 nav button.nav-button:focus-visible{outline:none;}
 nav button.nav-button:active{ -webkit-tap-highlight-color: transparent;}
 nav button.nav-button{
@@ -358,7 +361,7 @@ nav button.nav-button md-ripple{
     color:var(--md-sys-color-outline);
   }
   nav.nav-style-5 button.nav-button:not([active]):hover{
-    /* color:var(--md-sys-color-on-background) */
+    color:var(--md-sys-color-on-background)
   }
   /* nav.nav-style-5 button.nav-button span.icon-holder{
     
@@ -384,8 +387,7 @@ nav button.nav-button md-ripple{
   }
 
   nav.nav-style-5 button.nav-button.stepbro{
-    /* font-family: "Bricolage Grotesque", system-ui; */
-    font-family: "Poppins", system-ui;
+    font-family: "Bricolage Grotesque", system-ui;
     font-size:18px;
     font-weight: 600;
   }
@@ -414,9 +416,82 @@ nav button.nav-button md-ripple{
   }
 
 
-  /* Nav style 7 */
+  /* Nav style 8 */
+  nav.nav-style-8{
+    width:auto;
+    padding:16px;
+    gap:0;
+    padding-right:0px;
+  }
+  nav.nav-style-8 button.nav-button md-ripple{
+    --md-ripple-hover-color: initial;
+    --md-ripple-pressed-color: initial;
+  }
 
 
+
+  nav.nav-style-8 button.nav-button{
+    padding:0px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:16px;
+    width:56px;
+    height: 56px;
+    transition:border-radius 500ms cubic-bezier(0.38,0.49,0,1.2), transform 500ms cubic-bezier(0.38,0.49,0,1.2), background 250ms;
+  }
+  nav.nav-style-8 button.nav-button:hover{
+    border-radius:64px;
+    transform: scale(1.05);
+  }
+
+
+  nav.nav-style-8 button.nav-button span.icon-holder{
+    all:unset;
+    width:24px;
+    height:24px;
+  }
+  nav.nav-style-8 button.nav-button span.material-symbols-rounded{
+    padding:0;
+  }
+
+  nav.nav-style-8 button.nav-button[active]{
+    background:var(--md-sys-color-primary-container)
+  }
+  nav.nav-style-8 button.nav-button[active] span.icon-holder span.material-symbols-rounded {
+    padding:0;
+    background:transparent;
+  }
+
+  nav.nav-style-8 button.nav-button > span:last-child{
+    display:none;
+    position:absolute;
+    left:calc(100% + 12px);
+    background:var(--md-sys-color-surface-container);
+    box-shadow: 0 0 0 1px var(--md-sys-color-surface-container-high);
+    padding:4px 8px;
+    border-radius:8px;
+    animation: labelIn-8 250ms cubic-bezier(0.38,0.49,0,1);
+    opacity: 0.9;
+    white-space: nowrap;
+  }
+  nav.nav-style-8 button.nav-button:hover span:last-child{
+    display:flex;
+  }
+
+  @keyframes labelIn-8 {
+    from{
+      transform: translateX(-8px);
+      opacity:0;
+    }
+    to{
+      transform: translateX(0);
+      opacity:0.9;
+    }
+    
+  }
+
+  
   
   
 }
@@ -566,8 +641,6 @@ nav.nav-style-7.variant-2 button.nav-button{
   font-size:18px;
 }
 
-/*
- * Desarrollado por Luis David Elizarraraz Mondaca ("Davo")
- * GitHub: https://github.com/srdavo
- * Basado en Stepbro Software: https://stepbro.site
- */
+
+
+

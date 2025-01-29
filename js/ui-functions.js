@@ -86,7 +86,7 @@ function toggleMenu(menuId, originButton = false) {
 function materialT(elements) {
   const mapping = {
     'option': 'md-select-option',
-    'select': 'MD-OUTLINED-SELECT, MD-FILLED-SELECT',
+    'select': 'MD-OUTLINED-SELECT, MD-FILLED-SELECT, md-outlined-select, md-filled-select',
     'select-not-reset': 'md-outlined-select:not(.no-reset), md-filled-select:not(.no-reset)', 
     'button': 'md-outlined-button, md-filled-button, md-filled-tonal-button, md-text-button, md-elevated-button',
     'input': 'md-outlined-text-field, md-filled-text-field',
@@ -397,8 +397,30 @@ function animate(element, windowNew, position, scale){
 }
 
 
+function currencySymbol() {
+  const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+  if (timezone.includes('America')) {
+    return '$';
+  }
+  return '€';
+}
+
 function formatMoney(amount) {
-  return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(amount);
+  // Get user timezone to approximately determine region
+  const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+  
+  // Default to EUR
+  let currency = 'EUR';
+  
+  // Check if timezone is in Americas
+  if (timezone.includes('America')) {
+    currency = 'USD';
+  }
+
+  return new Intl.NumberFormat('en-US', { 
+    style: 'currency', 
+    currency: currency 
+  }).format(amount);
 }
 function dateToText(date, showYear) {
   if(showYear === undefined){showYear = false}
@@ -679,9 +701,6 @@ function toggleOvermessage(overId){
 function toggleSubSection(subSectionId, options = {exclusive: false}){
   const subSection = document.querySelector(subSectionId);
   
-  
-  
-
   const mainParent = subSection.parentElement;
   var activeContent = mainParent.querySelectorAll(':scope > *:not([data-sub-section]:not([active]))');
   activeContent = Array.from(activeContent).filter(element => element !== subSection);
@@ -690,12 +709,37 @@ function toggleSubSection(subSectionId, options = {exclusive: false}){
   
   // const desireSubSectionState = Flip.getState(subSection);
   // const eventOriginState = Flip.getState(event.currentTarget);
+
+  // If we try to open the already active subsection, dont do anything
   if(subSection.hasAttribute("active") && options.action === "open") return false;
 
-  subSection.toggleAttribute('sub-section-in-animation');
-  subSection.addEventListener("animationend", () => { 
-    subSection.removeAttribute('sub-section-in-animation');
-  }, {once: true});
+  if(options.animationType) {
+    if(options.animationType === "from-origin"){
+      var eventOriginState = Flip.getState(event.currentTarget);
+      if(options.customOrigin){
+        eventOriginState = Flip.getState(options.customOrigin);
+      }
+
+      subSection.toggleAttribute("active");
+      subSection.setAttribute("sub-section-simple-in-animation", "");
+      
+      Flip.from(eventOriginState, {
+        ease: CustomEase.create("custom", "M0,0 C0.308,0.19 0.107,0.633 0.288,0.866 0.382,0.987 0.656,1 1,1 "),
+        // ease: CustomEase.create("easeName", "0.38,0.49,0,1"),
+        targets: subSection,
+        duration: 0.7,
+        toggleClass: "apply-blur-animation-2",
+        scale:true,
+        onComplete: () => {subSection.removeAttribute("sub-section-simple-in-animation")}
+      }).play();
+
+      
+      
+    }
+    // console.log("hello")
+    return;
+  }
+  
 
   if(subSection.hasAttribute('active')){
     
@@ -721,8 +765,17 @@ function toggleSubSection(subSectionId, options = {exclusive: false}){
 
     }, {once: true});
   }else{
+    // Open the subsection
     subSection.toggleAttribute('active');
+    subSection.toggleAttribute('sub-section-in-animation');
+    subSection.addEventListener("animationend", () => { 
+      subSection.removeAttribute('sub-section-in-animation');
+    }, {once: true});
   }
+
+  
+
+  
 
 
   
@@ -764,6 +817,23 @@ function toggleSubSection(subSectionId, options = {exclusive: false}){
   }
 
 
+}
+
+
+function flowChilds(parent, options = {startOpacity: 0, animationVariant: "", betweenDelay: 0.05}){
+  options.startOpacity = options.startOpacity || 0;
+  options.animationVariant = options.animationVariant || "";
+  options.betweenDelay = options.betweenDelay || 0.05;
+
+  Array.from(parent.children).forEach((el, index) => {
+      el.style.opacity = options.startOpacity;
+      el.style.animationDelay = `${index * options.betweenDelay}s`; // Retraso de 0.2s por elemento
+      el.classList.add(`search-result-item-in${options.animationVariant}`); // Agrega la clase que activa la animación
+      el.addEventListener("animationend", () => {
+          el.classList.remove(`search-result-item-in${options.animationVariant}`)
+          el.style.opacity = "initial";
+      }, {once: true})
+  });
 }
 
 
