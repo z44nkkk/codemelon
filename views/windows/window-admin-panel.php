@@ -39,7 +39,7 @@
                         <span>Sugerencias</span>
                     </button>
 
-                    <button 
+                    <!-- <button 
                         class="w-nav-button style-2"
                         data-w-section="w-section-admin-panel-email"
                         onclick="toggleWSection('w-section-admin-panel-email', this)"
@@ -47,7 +47,7 @@
                         <md-ripple></md-ripple>
                         <md-icon>email</md-icon>
                         <span>Email</span>
-                    </button>
+                    </button> -->
                 </div>
                 <div class="simple-container direction-column v-margin-large">
                     <span class="display-small dm-sans weight-500 on-background-text">Panel de administrador</span>

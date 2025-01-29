@@ -5,6 +5,7 @@ require_once("../../../../back-end/config/session.php");
 require_once("../models/Permissions.php");
 require_once("../models/ActionLog.php");
 require_once("../helpers/Pagination.php");
+require_once("../helpers/Encrypt.php");
 
 
 $json_data = file_get_contents('php://input');
@@ -30,6 +31,14 @@ switch ($data["op"]){
             "owner_id" => $data["owner_id"] ?? null,
             "action_id" => 1
         ];
+
+        // Encrypt sensitive data
+        // $data_array["patient_contact_phone"] = openssl_encrypt($data_array["patient_contact_phone"], "AES-128-ECB", $encryption_key);
+        $data_array["patient_school"] = Encrypt::encrypt($data_array["patient_school"]);
+        $data_array["patient_school_grade"] = Encrypt::encrypt($data_array["patient_school_grade"]);
+        $data_array["patient_contact_phone"] = Encrypt::encrypt($data_array["patient_contact_phone"]);
+        $data_array["patient_contact_email"] = Encrypt::encrypt($data_array["patient_contact_email"]);
+        $data_array["patient_gender"] = Encrypt::encrypt($data_array["patient_gender"]);
 
         $log = [
             "user_id" => $userid,
@@ -98,6 +107,14 @@ switch ($data["op"]){
             "patient_appt_price" => htmlspecialchars(trim($data["patient_appt_price"] ?? null), ENT_QUOTES, 'UTF-8'),
             "row_status" => 1
         ];
+
+        // Encrypt sensitive data
+        $data_array["patient_school"] = Encrypt::encrypt($data_array["patient_school"]);
+        $data_array["patient_school_grade"] = Encrypt::encrypt($data_array["patient_school_grade"]);
+        $data_array["patient_contact_phone"] = Encrypt::encrypt($data_array["patient_contact_phone"]);
+        $data_array["patient_contact_email"] = Encrypt::encrypt($data_array["patient_contact_email"]);
+        $data_array["patient_gender"] = Encrypt::encrypt($data_array["patient_gender"]);
+        $data_array["patient_notes"] = Encrypt::encrypt($data_array["patient_notes"]);
         
         $log = [
             "user_id" => $userid,
@@ -183,7 +200,7 @@ switch ($data["op"]){
             // 6. execute the action
             $result = Patient::getPatients($data_array);
             if($result === false){ throw new Exception('Failed to get patients'); }
-
+            
             // 7. No action log needed for this action
 
             // 8. commit transaction

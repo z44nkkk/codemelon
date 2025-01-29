@@ -71,7 +71,7 @@ const TrashManager = (() => {
         itemNameContainer.textContent = itemName;
 
         toggleDialog("dialog-recover-from-trash-confirmation");
-        recoverFromTrashDialog.querySelector("[name='button-confirm-recover-from-trash']").onclick = function() { recoverFromTrash(data, itemType); }
+        recoverFromTrashDialog.querySelector("[name='button-confirm-recover-from-trash']").onclick = async () => await recoverFromTrash(data, itemType); 
     }
 
     function openDeleteForeverDialog(itemType = null){
@@ -156,7 +156,7 @@ const TrashManager = (() => {
     async function recoverFromTrash(data={}, itemType = null){
         if(!data.item_id || !itemType) return false;
 
-        const result = trashService.recoverFromTrash(data);
+        const result = await trashService.recoverFromTrash(data);
         if(!result) return false;
         message("Se recuperó con éxito");
         toggleDialog();
@@ -193,13 +193,16 @@ const TrashManager = (() => {
 
             // Sync Patients object
             await PatientsManager.loadPatients();
-            PatientsManager.displayPatientsTable(undefined, true);
+            console.log(PatientsManager.patients() )
+            
+            PatientsManager.displayPatientsTable(PatientsManager.patients().data, true);
             ApptsManager.patientSelector.innerHTML = ApptsManager.buildPatientsOptionList(PatientsManager.patientsForOptions().data);            
         }
     }
 
-    function displayTrashTable(itemType = null){
-        if(!itemType) { return false; }
+    function displayTrashTable(itemType = null, replace = false){
+        if(replace) deletedApptsTable.innerHTML = "";
+        if(!itemType || itemType == null) { return false; }
 
         if(itemType === "appt"){
             deletedApptsTable.innerHTML = "";
@@ -211,7 +214,7 @@ const TrashManager = (() => {
         }
 
         const fragment = document.createDocumentFragment();
-        table.forEach(row => {fragment.appendChild(row);});
+        if(table) table.forEach(row => {fragment.appendChild(row);});
 
         if(itemType === "appt"){
             handleLoadMoreButton(itemType);

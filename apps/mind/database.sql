@@ -8,11 +8,11 @@ CREATE TABLE patients (
     user_id BIGINT(20) NOT NULL,
     patient_name VARCHAR(255) NOT NULL,
     patient_birthdate DATE,
-    patient_school VARCHAR(255),
-    patient_school_grade VARCHAR(255),
-    patient_contact_phone VARCHAR(32),
-    patient_contact_email VARCHAR(255),
-    patient_gender VARCHAR(255),
+    patient_school TEXT,
+    patient_school_grade TEXT,
+    patient_contact_phone TEXT,
+    patient_contact_email TEXT,
+    patient_gender TEXT,
     patient_status TINYINT(1) DEFAULT 1,
     patient_notes TEXT,
     patient_appt_price DECIMAL(10,2) DEFAULT 0,
@@ -70,5 +70,11 @@ ALTER TABLE appointments ADD COLUMN appt_payment_status TINYINT(1) DEFAULT 1 AFT
 ALTER TABLE appointments ADD COLUMN appt_duration TIME DEFAULT '01:00:00' AFTER appt_time; 
 
 -- pending
+ALTER TABLE patients MODIFY COLUMN patient_school TEXT;
+ALTER TABLE patients MODIFY COLUMN patient_school_grade TEXT;
+ALTER TABLE patients MODIFY COLUMN patient_contact_phone TEXT;
+ALTER TABLE patients MODIFY COLUMN patient_contact_email TEXT;
+ALTER TABLE patients MODIFY COLUMN patient_gender TEXT;
+
 
 

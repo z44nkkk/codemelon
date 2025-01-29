@@ -341,7 +341,7 @@
                         onclick="toggleWSection('#w-sub-section-stepbro_build_info')"
                         >
                         <md-ripple></md-ripple>
-                        <div class="label-large">stepbro Build</div>
+                        <div class="label-large">Codemelon Build</div>
                         <span class="label-large simple-container align-center gap-8">
                             Información
                             <md-icon class=" filled">arrow_circle_right</md-icon>
@@ -363,7 +363,7 @@
                         onclick="toggleWSection('#w-sub-section-notes_app_info')"
                         >
                         <md-ripple></md-ripple>
-                        <div class="label-large">stepbro Notes</div>
+                        <div class="label-large">Melon Mind</div>
                         <span class="label-large simple-container align-center gap-8">
                             Información
                             <md-icon class=" filled">arrow_circle_right</md-icon>
@@ -381,14 +381,14 @@
                     <md-icon-button onclick="toggleWSection('#w-section-information')"><md-icon>arrow_back</md-icon></md-icon-button>
                 </div>
                 <div class="simple-container gpa-8 direction-column">
-                    <span class="headline-medium fit-content" data-shared_element_info_title>stepbro Notes</span>
+                    <span class="headline-medium fit-content dm sans" data-shared_element_info_title>Melon Mind</span>
                     <span class="body-large outline-text">Información sobre la app y el desarrollador</span>
                 </div>
                 <div class="simple-container direction-column gap-8" data-shared_element_stepbro_notes_app_info_container>
                     <div class="content-box direction-row padding-24 border-radius-16 justify-between">
                         <div class="simple-container"><span class="label-large">Versión</span></div>
                         <div class="simple-container"><span class="body-large
-                        ">1.7.1</span></div>
+                        ">Beta 1</span></div>
                     </div>
 
                     <div class="content-box padding-8 border-radius-16 on-background-tex">
@@ -396,11 +396,11 @@
                             <span class="label-large">Créditos</span>
                         </div>
                         
-                        <div class="content-box light-color padding-24 border-radius-16 justify-between">
+                        <div class="content-box light-color padding-24 border-radius-8 justify-between">
                             <div class="simple-container direction-column gap-8">
                                 <div class="simple-container direction-column gap-4">
                                     <span class="headline-small bricolage weight-500">Luis David Elizarraraz Mondaca</span>
-                                    <span class="body-medium outline-text">Desarrollador, encargado del Front End, Back End y Arquitectura de la aplicación.</span>
+                                    <span class="body-medium outline-text">Desarrollador Full Stack | Arquitecto de Software | Diseñador de UI/UX | Fundador del proyecto Melon Mind con iniciativa como Stepbro Mind</span>
                                 </div>
 
                                 <div class="simple-container top-margin-8 gap-8">
@@ -443,52 +443,7 @@
                             </div>    
                         </div>
 
-                        <div class="content-box light-color padding-24 border-radius-16 justify-between">
-                            <div class="simple-container direction-column gap-8">
-                                <div class="simple-container direction-column gap-4">
-                                    <span class="headline-small bricolage weight-500">René Diaz Óleta</span>
-                                <span class="body-medium outline-text">Desarrollador, encargado del Back end y de programación de funcionalidades de la aplicación.</span>
-                                </div>
-
-                                <div class="simple-container top-margin-8 gap-8">
-
-                                    <a href="https://www.youtube.com/@renyck02" target="_blank" class="content-box outline-light-1 width-auto cursor-pointer border-radius-8 padding-16">
-                                        <md-ripple></md-ripple>
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                            <path d="M23.498 6.18598C23.3624 5.67526 23.095 5.20912 22.7226 4.83425C22.3502 4.45937 21.8858 4.18892 21.376 4.04998C19.505 3.54498 12 3.54498 12 3.54498C12 3.54498 4.495 3.54498 2.623 4.04998C2.11341 4.18917 1.64929 4.45972 1.27708 4.83456C0.904861 5.20941 0.637591 5.67542 0.502 6.18598C0 8.06998 0 12 0 12C0 12 0 15.93 0.502 17.814C0.637586 18.3247 0.904975 18.7908 1.27739 19.1657C1.64981 19.5406 2.11418 19.811 2.624 19.95C4.495 20.455 12 20.455 12 20.455C12 20.455 19.505 20.455 21.377 19.95C21.8869 19.8111 22.3513 19.5407 22.7237 19.1658C23.0961 18.7909 23.3635 18.3248 23.499 17.814C24 15.93 24 12 24 12C24 12 24 8.06998 23.498 6.18598ZM9.545 15.568V8.43198L15.818 12L9.545 15.568Z" fill="var(--md-sys-color-on-background)"/>
-                                        </svg>
-                                    </a>
-                                    <!-- <a href="https://github.com/renyck02" target="_blank" class="content-box outline-light-1 width-auto cursor-pointer border-radius-8 padding-16">
-                                        <md-ripple></md-ripple>
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                            <g clip-path="url(#clip0_58_7)">
-                                            <path d="M12 0.296997C5.37 0.296997 0 5.67 0 12.297C0 17.6 3.438 22.097 8.205 23.682C8.805 23.795 9.025 23.424 9.025 23.105C9.025 22.82 9.015 22.065 9.01 21.065C5.672 21.789 4.968 19.455 4.968 19.455C4.422 18.07 3.633 17.7 3.633 17.7C2.546 16.956 3.717 16.971 3.717 16.971C4.922 17.055 5.555 18.207 5.555 18.207C6.625 20.042 8.364 19.512 9.05 19.205C9.158 18.429 9.467 17.9 9.81 17.6C7.145 17.3 4.344 16.268 4.344 11.67C4.344 10.36 4.809 9.29 5.579 8.45C5.444 8.147 5.039 6.927 5.684 5.274C5.684 5.274 6.689 4.952 8.984 6.504C9.944 6.237 10.964 6.105 11.984 6.099C13.004 6.105 14.024 6.237 14.984 6.504C17.264 4.952 18.269 5.274 18.269 5.274C18.914 6.927 18.509 8.147 18.389 8.45C19.154 9.29 19.619 10.36 19.619 11.67C19.619 16.28 16.814 17.295 14.144 17.59C14.564 17.95 14.954 18.686 14.954 19.81C14.954 21.416 14.939 22.706 14.939 23.096C14.939 23.411 15.149 23.786 15.764 23.666C20.565 22.092 24 17.592 24 12.297C24 5.67 18.627 0.296997 12 0.296997Z" fill="var(--md-sys-color-on-background)"/>
-                                            </g>
-                                            <defs>
-                                            <clipPath id="clip0_58_7">
-                                            <rect width="24" height="24" fill="white"/>
-                                            </clipPath>
-                                            </defs>
-                                        </svg>
-                                    </a>   -->
-                                    <a href="mailto:reneclass2@gmail.com" target="_blank" class="content-box outline-light-1 width-auto cursor-pointer border-radius-8 padding-16">
-                                        <md-ripple></md-ripple>
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
-                                        <g clip-path="url(#clip0_59_10)">
-                                            <path d="M24 5.45703V19.366C24 20.27 23.268 21.002 22.364 21.002H18.545V11.73L12 16.64L5.455 11.73V21.003H1.636C1.42107 21.003 1.20825 20.9607 1.0097 20.8784C0.811145 20.7961 0.63075 20.6755 0.47882 20.5235C0.32689 20.3715 0.206404 20.191 0.124246 19.9924C0.0420884 19.7938 -0.000131068 19.581 3.05652e-07 19.366V5.45703C3.05652e-07 3.43403 2.309 2.27903 3.927 3.49303L5.455 4.64003L12 9.54803L18.545 4.63803L20.073 3.49303C21.69 2.28003 24 3.43403 24 5.45703Z" fill="var(--md-sys-color-on-background)"/>
-                                            </g>
-                                            <defs>
-                                            <clipPath id="clip0_59_10">
-                                            <rect width="24" height="24" fill="white"/>
-                                            </clipPath>
-                                            </defs>
-                                        </svg>
-                                    </a>
-                                    
-                                </div>
-
-                            </div>    
-                        </div>
+                        
                     </div>
 
                 </div>
@@ -500,14 +455,14 @@
                     <md-icon-button onclick="toggleWSection('#w-section-information')"><md-icon>arrow_back</md-icon></md-icon-button>
                 </div>
                 <div class="simple-container gpa-8 direction-column">
-                    <span class="headline-medium fit-content" data-shared_element_info_title>stepbro Build</span>
+                    <span class="headline-medium fit-content" data-shared_element_info_title>Codemelon Build</span>
                     <span class="body-large outline-text">Información sobre la app y el desarrollador</span>
                 </div>
                 <div class="simple-container direction-column gap-8" data-shared_element_stepbro_build_info_container>
                     <div class="content-box direction-row padding-24 border-radius-16 justify-between">
                         <div class="simple-container"><span class="label-large">Versión</span></div>
                         <div class="simple-container"><span class="body-large
-                        ">1.1.0</span></div>
+                        ">Beta 1</span></div>
                     </div>   
                 </div>    
             </div>

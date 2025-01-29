@@ -59,56 +59,81 @@ class Patient extends ActiveRecord {
         return $result->fetch_assoc();
     }
 
-    public static function getPatients($data_array){
+    public static function getPatients($data_array) {
         $user_id = $data_array["user_id"];
         $filters = $data_array["filters"];
         $limit = $data_array["limit"];
         $offset = $data_array["offset"];
-
+    
         $query = "SELECT * FROM patients WHERE user_id = ?";
         $params = [$user_id];
-
-        if(!empty($filters["search"])){
+    
+        if (!empty($filters["search"])) {
             $query .= " AND patient_name LIKE ?";
-            $params[] = "%".$filters["search"]."%";
+            $params[] = "%" . $filters["search"] . "%";
         }
-
-        if(!empty($filters["status"]) && $filters["status"] !== 'all_status'){
+    
+        if (!empty($filters["status"]) && $filters["status"] !== 'all_status') {
             $query .= " AND patient_status = ?";
             $params[] = $filters["status"];
         }
-
-        if(isset($filters["row_status"])){
+    
+        if (isset($filters["row_status"])) {
             $query .= " AND row_status = ?";
             $params[] = $filters["row_status"];
-        }else{
+        } else {
             $query .= " AND row_status = 1";
         }
-
-        if(!empty($filters["order"]) && !empty($filters["order_by"])){
+    
+        if (!empty($filters["order"]) && !empty($filters["order_by"])) {
             $allowedColumns = ['patient_name', 'patient_birthdate', 'patient_status'];
             $allowedOrders = ['ASC', 'DESC'];
-            
+    
             $orderBy = in_array($filters["order_by"], $allowedColumns) ? $filters["order_by"] : 'patient_name';
             $order = in_array(strtoupper($filters["order"]), $allowedOrders) ? strtoupper($filters["order"]) : 'ASC';
-            
+    
             $query .= " ORDER BY " . $orderBy . " " . $order;
         } else {
             $query .= " ORDER BY patient_name ASC";
         }
-
+    
         $query .= " LIMIT ? OFFSET ?";
         $params[] = $limit;
         $params[] = $offset;
-        
+    
         $stmt = self::$db->prepare($query);
         if (!$stmt) { return false; }
         if (!$stmt->execute($params)) { return false; }
         $result = $stmt->get_result();
         if (!$result) { return false; }
-        return $result->fetch_all(MYSQLI_ASSOC);
-        
+    
+        $patients = $result->fetch_all(MYSQLI_ASSOC);
+    
+        // Desencriptar los campos encriptados
+        foreach ($patients as &$patient) {
+            if (!empty($patient['patient_school'])) {
+                $patient['patient_school'] = Encrypt::decrypt($patient['patient_school']);
+            }
+            if (!empty($patient['patient_school_grade'])) {
+                $patient['patient_school_grade'] = Encrypt::decrypt($patient['patient_school_grade']);
+            }
+            if (!empty($patient['patient_contact_phone'])) {
+                $patient['patient_contact_phone'] = Encrypt::decrypt($patient['patient_contact_phone']);
+            }
+            if (!empty($patient['patient_contact_email'])) {
+                $patient['patient_contact_email'] = Encrypt::decrypt($patient['patient_contact_email']);
+            }
+            if (!empty($patient['patient_gender'])) {
+                $patient['patient_gender'] = Encrypt::decrypt($patient['patient_gender']);
+            }
+            if (!empty($patient['patient_notes'])) {
+                $patient['patient_notes'] = Encrypt::decrypt($patient['patient_notes']);
+            }
+        }
+    
+        return $patients;
     }
+    
 
     public static function getStats($data_array){
         $filters = $data_array["filters"] ?? [];

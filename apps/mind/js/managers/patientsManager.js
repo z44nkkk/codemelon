@@ -395,6 +395,7 @@ const PatientsManager = (() => {
     async function createPatient(event){
         if(!event) return false;
         event.preventDefault();
+        toggleButton(`#${createPatientForm.id}`, true);
         const mimimumDataParentId = createPatientForm.querySelector("[name='minimum-data']").id;
         if(!checkEmpty(`#${mimimumDataParentId}`, 'input, select')){return;}
         const data = {
@@ -408,6 +409,7 @@ const PatientsManager = (() => {
             patient_appt_price: createPatientForm.querySelector("[name='patient-appt_price']").value.trim() ?? 0.00,
         }
         const result = await patientService.insertPatient(data);
+        toggleButton(`#${createPatientForm.id}`, false);
         if(!result) return false;
 
         
@@ -424,6 +426,8 @@ const PatientsManager = (() => {
             patient_appt_price: data.patient_appt_price,
             patient_notes: ""
         });
+        patients.pagination.total_rows += 1;
+        patients.stats.count_active = Number(patients.stats.count_active) + 1;
         patientsForOptions.data.push({
             id: result.patient_id,
             patient_name: data.patient_name,
@@ -437,6 +441,8 @@ const PatientsManager = (() => {
             patient_appt_price: data.patient_appt_price,
             patient_notes: ""
         });
+        patientsForOptions.pagination.total_rows += 1;
+        patientsForOptions.stats.count_active = Number(patients.stats.count_active) + 1;
         patientsForOptions.data = patientsForOptions.data.sort((a, b) => a.patient_name.localeCompare(b.patient_name));
 
         displayPatientsTable(undefined, true);
@@ -597,9 +603,9 @@ const PatientsManager = (() => {
 
         const trashPatients = TrashManager.trashItems().patients;
         const itemIndex = trashPatients.data.findIndex(patient => patient.id == data.id);
-        if(itemIndex !== -1) trashPatients.splice(itemIndex, 1);
+        if(itemIndex !== -1) trashPatients.data.splice(itemIndex, 1);
         trashPatients.pagination.total_rows -= 1;
-        TrashManager.displayTrashTable("patients");
+        TrashManager.displayTrashTable("patient", true);
     }
 
 
