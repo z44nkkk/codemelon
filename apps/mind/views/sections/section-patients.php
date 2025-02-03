@@ -161,13 +161,21 @@
                     </div>
                 </div>
 
-                <div class="simple-container direction-column">
+                <div class="simple-container direction-column position-relative">
                     <md-filled-text-field
-                        disabled
                         label="Notas del paciente" 
+                        placeholder="Escribe aquí las notas del paciente"
                         type="textarea"
+                        style="min-height: 232px;"
                         name="patient-notes"
                     ></md-filled-text-field>
+                    <md-icon 
+                        class="pretty small ui-confirm-note-changes position-absolute bottom-8 right-8" 
+                        title="Indicador de auto guardado"
+                        name='ui-indicator-note-updated'
+                        >
+                        cloud_done
+                    </md-icon>
                 </div>
                 <div class="simple-container bottom-margin-24 justify-between">
                     <md-text-button onclick="TrashManager.openConfirmationDialog('patient')"><md-icon slot="icon">delete</md-icon>Eliminar paciente</md-text-button>

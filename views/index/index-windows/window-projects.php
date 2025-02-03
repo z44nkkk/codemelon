@@ -22,9 +22,24 @@
             <span class="dm-sans text-center headline-medium data-line increased light-color outline-text outline-1-light">Plataformas</span>
         </div>
 
-        <div class="content-box direction-row padding-24 light-color flex-wrap">
+        <div class="content-box direction-row padding-24 light-color flex-wrap user-select-none hover-outline">
             <div class="simple-container grow-1 basis-normal">
-                <img src="assets/carded.png" alt="carded" class="width-100">
+                <img src="assets/stepbro_mind.png" alt="Melon Mind" class="width-100" style="content-visibility: auto;">
+            </div>
+            <div class="simple-container grow-1 basis-normal direction-column gap-8 justify-center">
+                <span class="display-medium dm-sans line-height-1 weight-500">Melon Mind</span>
+                <p class="headline-small outline-text">
+                Es una plataforma integral diseñada para psicólogos y clínicas, que facilita la gestión de pacientes, citas y finanzas, mientras potencia la organización y la colaboración en equipo.
+                </p>
+
+                <div class="simple-container top-margin-16">
+                    <md-outlined-button href="https://codemelon.net/apps/mind" target=" _blank" class="solid">Ir al proyecto <md-icon slot="icon">open_in_new</md-icon></md-outlined-button>
+                </div>
+            </div>
+        </div>
+        <div class="content-box direction-row padding-24 light-color flex-wrap user-select-none hover-outline">
+            <div class="simple-container grow-1 basis-normal">
+                <img src="assets/carded.png" alt="carded" class="width-100" style="content-visibility: auto;">
             </div>
             <div class="simple-container grow-1 basis-normal direction-column gap-8 justify-center">
                 <span class="display-medium dm-sans line-height-1 weight-500">Carded NFC</span>
@@ -37,9 +52,9 @@
                 </div>
             </div>
         </div>
-        <div class="content-box direction-row padding-24 light-color flex-wrap">
+        <div class="content-box direction-row padding-24 light-color flex-wrap user-select-none hover-outline">
             <div class="simple-container grow-1 basis-normal">
-                <img src="assets/stepbro_notes.png" alt="stepbro notes" class="width-100">
+                <img src="assets/stepbro_notes.png" alt="stepbro notes" class="width-100" style="content-visibility: auto;">
             </div>
             <div class="simple-container grow-1 basis-normal direction-column gap-8 justify-center">
                 <span class="display-medium dm-sans line-height-1 weight-500">stepbro Notes</span>
@@ -52,28 +67,13 @@
                 </div>
             </div>
         </div>
-        <div class="content-box direction-row padding-24 light-color flex-wrap">
-            <div class="simple-container grow-1 basis-normal">
-                <img src="assets/stepbro_mind.png" alt="stepbro mind" class="width-100">
-            </div>
-            <div class="simple-container grow-1 basis-normal direction-column gap-8 justify-center">
-                <span class="display-medium dm-sans line-height-1 weight-500">stepbro Mind</span>
-                <p class="headline-small outline-text">
-                Es una plataforma integral diseñada para psicólogos y clínicas, que facilita la gestión de pacientes, citas y finanzas, mientras potencia la organización y la colaboración en equipo.
-                </p>
-
-                <div class="simple-container top-margin-16">
-                    <md-outlined-button href="https://mind.stepbro.site" target=" _blank" class="solid">Ir al proyecto <md-icon slot="icon">open_in_new</md-icon></md-outlined-button>
-                </div>
-            </div>
-        </div>
 
         <div class="simple-container justify-center bottom-margin-16 top-margin-16">
             <span class="dm-sans text-center headline-medium data-line increased light-color outline-text outline-1-light">Páginas web</span>
         </div>
-        <div class="content-box direction-row padding-24 light-color flex-wrap">
+        <div class="content-box direction-row padding-24 light-color flex-wrap user-select-none hover-outline">
             <div class="simple-container grow-1 basis-normal">
-                <img src="assets/eros.png" alt="eros" class="width-100">
+                <img src="assets/eros.png" alt="eros" class="width-100" style="content-visibility: auto;">
             </div>
             <div class="simple-container grow-1 basis-normal direction-column gap-8 justify-center">
                 <span class="display-medium dm-sans line-height-1 weight-500">Eros</span>
@@ -86,9 +86,9 @@
                 </div>
             </div>
         </div>
-        <div class="content-box direction-row padding-24 light-color flex-wrap">
+        <div class="content-box direction-row padding-24 light-color flex-wrap user-select-none hover-outline">
             <div class="simple-container grow-1 basis-normal">
-                <img src="assets/earthboundfest.png" alt="earthboundfest" class="width-100">
+                <img src="assets/earthboundfest.png" alt="earthboundfest" class="width-100" style="content-visibility: auto;">
             </div>
             <div class="simple-container grow-1 basis-normal direction-column gap-8 justify-center">
                 <span class="display-medium dm-sans line-height-1 weight-500">Earthbound</span>

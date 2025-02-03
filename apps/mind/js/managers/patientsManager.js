@@ -8,6 +8,7 @@ const PatientsManager = (() => {
     let patientsForOptions = [];
     let currentOpenPatientId = false;
     let currentOpenPatientDialogId = false;
+    let patientNotesTimeOut;
 
     let apptsForPatient = [];
 
@@ -17,6 +18,7 @@ const PatientsManager = (() => {
     // patient data
     const patientProfile = document.getElementById("sub-section-patient-profile");
     const editPatientForm = document.getElementById("form-edit-patient");
+    const patientNotesField = patientProfile.querySelector("[name='patient-notes']");
 
     // patient profile
     const patientApptsTableFiltersContainer = document.getElementById("container-patient-appts-table-filters");
@@ -135,18 +137,48 @@ const PatientsManager = (() => {
     function openPatientProfile(origin){
         
         currentOpenPatientId = origin.dataset.id;
-        origin.classList.add("primary-container");
+        // origin.classList.add("primary-container");
 
+        // set buttons actions
         const createApptButton = patientProfile.querySelector("[name='button-create-appt']");
         createApptButton.onclick = () => { ApptsManager.openCreateApptWindow({specificPatient: currentOpenPatientId, openStyle: "absolute"}) }
 
+        // open sub section
         toggleSubSection('#sub-section-patient-profile', {exclusive: true, action: 'open'});
         animateChilds(document.getElementById("md-panel-patient-general"));
         
+        // display patient data
         setProfilePatientData(origin);
         setFormPatientData(origin);
         toggleWindow();
 
+        // set event listener to note field
+        var patientNoteValue, patientId;
+        patientNotesField.addEventListener("input", () => {
+            clearTimeout(patientNotesTimeOut);
+            patientNoteValue = patientNotesField.value;
+            patientId = currentOpenPatientId;
+            patientNotesTimeOut = setTimeout(async () => {
+                const data = {
+                    patient_id: patientId,
+                    patient_notes: patientNoteValue
+                }
+                // const data = {patient_id: currentOpenPatientId, patient_notes: patientProfile.querySelector("[name='patient-notes']").value};
+                const updateNote = await patientService.updateNote(data);
+                if(!updateNote){console.error("Error updating the patient note"); return false }
+                patients.data.find(patient => patient.id == patientId).patient_notes = data.patient_notes;
+                patientsForOptions.data.find(patient => patient.id == patientId).patient_notes = data.patient_notes;
+                patientsTableContainer.querySelector(`[data-id='${patientId}']`).dataset.patient_notes = data.patient_notes;
+
+                if(patientId == currentOpenPatientId){
+                    editPatientForm.querySelector("[name='patient-notes']").value = data.patient_notes;
+                    uiConfirmationNoteUpdated();
+                }
+            }, 1000);
+        });
+
+        
+        // Go to default tab
         const defaultTab = document.getElementById("md-tab-patients-general");
         if(defaultTab && defaultTab.hasAttribute('active')) return;
         document.getElementById("md-tab-patients-general").click();
@@ -248,7 +280,7 @@ const PatientsManager = (() => {
         patientProfile.querySelector("[name='patient-contact_email']").innerHTML = (origin.dataset.patient_contact_email == "") ? "<i class='opacity-0-5'>No especificado</i>" : origin.dataset.patient_contact_email
         patientProfile.querySelector("[name='patient-school']").innerHTML = (origin.dataset.patient_school == "") ? "<i class='outline-variant-text'>No especificado</i>" : origin.dataset.patient_school
         patientProfile.querySelector("[name='patient-school_grade']").innerHTML = (origin.dataset.patient_school_grade == "") ? "<i class='opacity-0-5'>No especificado</i>" : origin.dataset.patient_school_grade
-        patientProfile.querySelector("[name='patient-notes']").value = (origin.dataset.patient_notes == "") ? "Sin notas" : origin.dataset.patient_notes;
+        patientProfile.querySelector("[name='patient-notes']").value = (origin.dataset.patient_notes == "") ? "" : origin.dataset.patient_notes;
         patientProfile.querySelector("[name='patient-appt_price']").innerHTML = (origin.dataset.patient_appt_price == "") ? "<i class='opacity-0-5'>No especificado</i>" : formatMoney(origin.dataset.patient_appt_price);
     }
 
@@ -606,6 +638,12 @@ const PatientsManager = (() => {
         if(itemIndex !== -1) trashPatients.data.splice(itemIndex, 1);
         trashPatients.pagination.total_rows -= 1;
         TrashManager.displayTrashTable("patient", true);
+    }
+
+    function uiConfirmationNoteUpdated(){
+        const uiIndicator = patientProfile.querySelector("[name='ui-indicator-note-updated']");
+        uiIndicator.setAttribute("active", "");
+        uiIndicator.addEventListener("animationend", () => {uiIndicator.removeAttribute("active")}, {once: true})
     }
 
 

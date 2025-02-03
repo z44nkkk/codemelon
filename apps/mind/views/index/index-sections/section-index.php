@@ -148,14 +148,14 @@
     <img src="https://i.ibb.co/tcqqRp6/82-1x-shots-so.png" alt="full preview" class="width-100 fit-cover">
     <div class="simple-container direction-column position-absolute top-24 other-title-container">
       <span class="display-large dm-sans weight-600 line-height-1 other-title">Comenzar a usar</span>
-      <div class="content-box translucid-background max-width-600 hover-scale-small other-container gap-16 bottom-margin-64">
+      <div class="content-box translucid-background max-width-600 hover-scale-small other-container gap-4 bottom-margin-64">
         <p class="headline-small dm-sans line-height-1">
           Regístrate y comienza a usar Melon Mind hoy mismo.
         </p>
         <p class="body-large outline-text">
-          Esta es una versión de prueba y que algunas funcionalidades pueden no estar disponibles.
+          Esta es una versión de prueba y algunas funcionalidades pueden no estar disponibles.
         </p>
-        <div class="simple-container">
+        <div class="simple-container top-margin-8">
         <?php
           if(isset($_SESSION['id'])){
             echo "
@@ -301,7 +301,7 @@
       }
 
       .translucid-background{
-        background: rgba(0,0,0,0.8);
+        background: rgba(0,0,0,0.5);
       }
     }
 

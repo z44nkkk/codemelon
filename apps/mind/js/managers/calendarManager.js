@@ -36,8 +36,8 @@ const calendarManager = (() => {
             date.setHours(12); // Set to noon to avoid DST issues
             const cellDate = new Date(date.getTime() - (date.getTimezoneOffset() * 60000))
                 .toISOString().split('T')[0];
-            console.log(`Fecha: ${cellDate}`);
-            console.log(`Día: ${day}`);
+            // console.log(`Fecha: ${cellDate}`);
+            // console.log(`Día: ${day}`);
             var dayCell = document.createElement("div");
             dayCell.setAttribute("data-flip-id", "animate");
             dayCell.setAttribute("data-day", new Date(cellDate).getDate());
@@ -243,7 +243,7 @@ const calendarManager = (() => {
         }
 
         const localDate = new Date(date.toLocaleString('en-US', { ...options, timeZoneName: 'short' }));
-        console.log(date, localDate);
+        // console.log(date, localDate);
         return localDate;
     }
     

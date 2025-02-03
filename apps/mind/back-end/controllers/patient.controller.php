@@ -276,6 +276,42 @@ switch ($data["op"]){
         echo json_encode($response);
 
         break;
+    case "patient_note_edit":
+        $data_array = [
+            "id" => $data["patient_id"],
+            "user_id" => $userid,
+            "owner_id" => $data["owner_id"] ?? null,
+            "patient_notes" => htmlspecialchars(trim($data["patient_notes"] ?? ""), ENT_QUOTES, 'UTF-8'),
+        ];
+
+        // Encrypt sensitive data
+        $data_array["patient_notes"] = Encrypt::encrypt($data_array["patient_notes"]);
+
+        try {
+            $db->autocommit(false);
+
+            $permissions = Permissions::validatePermissions($data_array);
+            if (!$permissions) { throw new Exception('Insufficient permissions'); }
+            if (!is_null($data_array['owner_id'])) { $data_array['user_id'] = $data['owner_id']; }
+
+            $result = Patient::updateNotes($data_array);
+            if($result == false){ throw new Exception('Failed to update notes'); }
+
+            $db->commit();
+            $response = [
+                "success" => true,
+                "message" => "Notes updated successfully"
+            ];
+        } catch (Exception $e) {
+            $db->rollback();
+            $response = [
+                "success" => false,
+                "message" => $e->getMessage()
+            ];
+        }
+
+        echo json_encode($response);
+        break;
     default:
         $response = [
             "success" => false,

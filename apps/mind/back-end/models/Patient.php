@@ -163,5 +163,14 @@ class Patient extends ActiveRecord {
         return $result->fetch_assoc();
     }
 
+    public static function updateNotes($data_array){
+        $query = "UPDATE patients SET patient_notes = ? WHERE id = ? AND user_id = ?";
+        $stmt = self::$db->prepare($query);
+        if (!$stmt) { return false; }
+        if (!$stmt->bind_param("sii", $data_array["patient_notes"], $data_array["id"], $data_array["user_id"])) { return false; }
+        if (!$stmt->execute()) { return false; }
+        return true;
+    }
+
 
 }
