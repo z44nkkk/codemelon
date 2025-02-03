@@ -3,8 +3,17 @@
         <md-icon class="filled pretty-minimal">border_clear</md-icon>
         <span class="headline-small dm-sans outline-text width-100 max-width-600 text-center">
             Plataforma en desarrollo <br>
-            
         </span>
+        <button 
+            class="style-2 primary-container on-primary-container-text hover-scale-small" 
+            onclick="toggleWindow('#window-send-suggestion')"
+            data-flip-id="animate"
+            >
+            <md-icon class="dynamic" style="vertical-align:middle;">feedback</md-icon>
+            <md-ripple></md-ripple>
+            Enviar comentarios
+        </button>
+    
     </div>
 
     <!-- <div class="simple-container gap-8 flex-wrap">
