@@ -1,5 +1,5 @@
 <?php 
-define('BASE_URL', '/');
+define('BASE_URL', '/codemelon/');
 include $_SERVER['DOCUMENT_ROOT'] . BASE_URL .'back-end/controllers/auth_controller.php';
 include_once $_SERVER['DOCUMENT_ROOT'] . BASE_URL .'back-end/config/config.php';
 include_once $_SERVER['DOCUMENT_ROOT'] . BASE_URL ."back-end/config/session.php";
@@ -32,6 +32,8 @@ checkSession($cookie_uid);
     
     <!-- Material Web Components -->
     <script src="<?= BASE_URL?>js/bundle.js"></script>
+    
+    <script src="<?= BASE_URL ?>js/components/cocounut-chart.js"></script>
 
 
     <meta charset="UTF-8">

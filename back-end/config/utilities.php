@@ -49,7 +49,8 @@ function displayYears(){
 
 function currencySymbol() {
   $ip = $_SERVER['REMOTE_ADDR'];
-  $details = json_decode(file_get_contents("http://ip-api.com/json/{$ip}"));
+  // $details = json_decode(file_get_contents("http://ip-api.com/json/{$ip}"));
+  $details = "";
 
   if (!empty($details->countryCode)) {
       switch ($details->countryCode) {
