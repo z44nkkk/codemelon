@@ -228,7 +228,7 @@ class Appointment extends ActiveRecord {
     }
 
     public static function checkAppointment($data_array){
-        $query = "SELECT * FROM appointments WHERE user_id = ? AND appt_date = ? AND appt_time = ?";
+        $query = "SELECT * FROM appointments WHERE user_id = ? AND appt_date = ? AND appt_time = ? AND row_status = 1";
         $params = [$data_array["user_id"], $data_array["appt_date"], $data_array["appt_time"]];
         if(isset($data_array["id"])){
             $query .= " AND id != ?";

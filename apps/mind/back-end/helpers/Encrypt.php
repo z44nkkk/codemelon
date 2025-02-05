@@ -14,16 +14,28 @@ class Encrypt {
     }
 
     public static function  decrypt($ciphertext_base64) {
+        // Check if the input is base64 encoded
+        if (!preg_match('/^[A-Za-z0-9+\/=]+$/', $ciphertext_base64)) {
+            return $ciphertext_base64;  // Return original text if not encrypted
+        }
+
+        // Try to decode base64
+        $ciphertext = @base64_decode($ciphertext_base64, true);
+        if ($ciphertext === false || strlen($ciphertext) < 16) {
+            return $ciphertext_base64;  // Return original text if not valid base64 or too short
+        }
+
         $method = 'aes-256-cbc';
-        $ciphertext = base64_decode($ciphertext_base64);
         $key = substr(hash('sha256', static::$password, true), 0, 32);
         $iv = substr($ciphertext, 0, 16);
         $ciphertext = substr($ciphertext, 16);
-        $compressed = openssl_decrypt($ciphertext, $method, $key, OPENSSL_RAW_DATA, $iv);
+        $compressed = @openssl_decrypt($ciphertext, $method, $key, OPENSSL_RAW_DATA, $iv);
         if ($compressed === false) {
-            return "";  // Decryption failed
+            return $ciphertext_base64;  // Return original text if decryption fails
         }
-        return gzuncompress($compressed);  // Descomprimir después de desencriptar
+
+        $decompressed = @gzuncompress($compressed);
+        return ($decompressed !== false) ? $decompressed : $ciphertext_base64;
     }
 
 }

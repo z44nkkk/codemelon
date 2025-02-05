@@ -8,6 +8,7 @@ include_once '../../back-end/config/utilities.php';
 </transparent>
 
 <main>
+  <md-linear-progress indeterminate style="position:absolute; width:100%; z-index:10;" id="main-app-loading-indicator"></md-linear-progress>
   <nav class="nav-style-2" id="nav-parent">
     <?php include_once 'views/partials/__navbar_items.php'; ?>
   </nav>

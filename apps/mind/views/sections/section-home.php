@@ -9,9 +9,9 @@
         </div>
 
         <div class="simple-container flex-wrap gap-8">
-            <div class="content-box padding-32 primary-container on-primary-container-text gap-0 rounded grow-1 basis-normal">
+            <div class="content-box padding-32 primary-container on-primary-container-text gap-0 rounded grow-1 basis-normal user-select-none">
                 <span class="headline-small dm-sans opacity-0-8">Hoy tienes</span>
-                <span class="display-medium weight-600 dm-sans line-height-1">5 citas</span>
+                <span class="display-medium weight-600 dm-sans line-height-1" id="total-today-appts">...</span>
                 <div class="simple-container position-absolute bottom-16 right-16">
                     <button
                         title="Agendar cita este día"
@@ -30,7 +30,7 @@
                 <div class="simple-container overflow-hidden">
                     <!-- <span class="headline-medium weight-600 dm-sans" style="text-wrap: nowrap;text-overflow: ellipsis;">1:00 PM, Yahel Ramirez Felix</span> -->
                 </div>
-                <span class="headline-medium weight-600 dm-sans">1:00 PM, Yahel</span>
+                <span class="headline-medium weight-600 dm-sans" id="response-home-next-appt">...</span>
                 
             </div>
 
@@ -45,83 +45,48 @@
             </div>
     
             <div class="simple-container left-margin-16 bottom-margin-16 gap-8">
-                <button class="style-2" active>Pendientes</button>
-                <button class="style-2">Completadas</button>
-                <!-- <span class="label-large outline-text">Pendientes</span> -->
+                <button 
+                    class="style-2"
+                    data-w-section="w-section-today-appts-pending"
+                    onclick="toggleWSection('w-section-today-appts-pending')"
+                    active
+                    >
+                    <md-ripple></md-ripple>
+                    Pendientes
+                </button>
+                <button 
+                    class="style-2"
+                    data-w-section="w-section-today-appts-completed"
+                    onclick="toggleWSection('w-section-today-appts-completed')"
+                    >
+                    <md-ripple></md-ripple>
+                    Completadas
+                </button>
             </div>
     
             <div 
-                class="
-                    content-box
-                    border-radius-16
-                    padding-16
-                    "
+                class="w-section simple-container direction-column grow-1"
+                id="w-section-today-appts-pending"
+                active
                 >
-                <!-- <span class="label-medium outline-text">Completada</span> -->
-                <span class="body-large">1:00 PM, Yahel Ramírez Félix</span>
-                <div class="simple-container gap-8">
-                    <button class="style-2 "active>
-                        <md-ripple></md-ripple>
-                        <md-icon class="dynamic">check</md-icon>
-                        Marcar completada
-                    </button>
-    
-                    <button class="style-2 primary-container">
-                        <md-ripple></md-ripple>
-                        <md-icon class="dynamic">edit</md-icon>
-                        Editar
-                    </button>
-    
+                <div 
+                    class="simple-container direction-column gap-8 grow-1" 
+                    id="response-container-today-pending-appts-table"
+                    >
                 </div>
             </div>
             <div 
-                class="
-                    content-box
-                    border-radius-16
-                    padding-16
-                    "
+                class="w-section simple-container direction-column grow-1"
+                id="w-section-today-appts-completed"
                 >
-                <!-- <span class="label-medium outline-text">Pendiente</span> -->
-                <span class="body-large">2:00 PM, Victor Mendevil Espinoza</span>
-                <div class="simple-container gap-8">
-                    <button class="style-2 primary-container" active>
-                        <md-ripple></md-ripple>
-                        <md-icon class="dynamic">check</md-icon>
-                        Marcar completada
-                    </button>
-    
-                    <button class="style-2 primary-container">
-                        <md-ripple></md-ripple>
-                        <md-icon class="dynamic">edit</md-icon>
-                        Editar
-                    </button>
-    
+                <div 
+                    class="simple-container direction-column gap-8 grow-1" 
+                    id="response-container-today-completed-appts-table"
+                    >
                 </div>
             </div>
-            <div 
-                class="
-                    content-box
-                    border-radius-16
-                    padding-16
-                    "
-                >
-                <!-- <span class="label-medium outline-text">Pendiente</span> -->
-                <span class="body-large">3:00 PM, Sebastían Osuna Anaya</span>
-                <div class="simple-container gap-8">
-                    <button class="style-2 primary-container" active>
-                        <md-ripple></md-ripple>
-                        <md-icon class="dynamic">check</md-icon>
-                        Marcar completada
-                    </button>
-    
-                    <button class="style-2 primary-container">
-                        <md-ripple></md-ripple>
-                        <md-icon class="dynamic">edit</md-icon>
-                        Editar
-                    </button>
-    
-                </div>
-            </div>
+
+            
             
     
         </div>

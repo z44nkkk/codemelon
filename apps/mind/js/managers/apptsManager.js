@@ -14,11 +14,23 @@ const ApptsManager = (() => {
         // appts = await apptService.getAppts({limit: "no_limit"});
         apptsForTable = await apptService.getAppts({filters: getFiltersValue()});
         apptsForCalendar = await apptService.getAppts({filters: CalendarManager.getCalendarRange(), limit: "no_limit"});
+        // loadTodayAppts();
+
         patientSelector.innerHTML = buildPatientsOptionList(PatientsManager.patientsForOptions().data);
     }
 
     async function updateApptsForCalendar(){
-        apptsForCalendar = await apptService.getAppts({filters: CalendarManager.getCalendarRange(), limit: "no_limit"});
+        // Con esta función traemos las citas seleccionadas del calendario, pero preservamos las anteriormente ya cargadas para aprovechar la vuelta
+        const newApptsForCalendar = await apptService.getAppts({filters: CalendarManager.getCalendarRange(), limit: "no_limit"});
+
+        // Create a Set of existing appointment IDs for O(1) lookup 
+        const existingIds = new Set(apptsForCalendar.data.map(appt => Number(appt.id)));
+        // Filter out appointments that already exist
+        const newAppts = newApptsForCalendar.data.filter(appt => !existingIds.has(Number(appt.id)));
+        // Add only new appointments
+        apptsForCalendar.data = [...apptsForCalendar.data, ...newAppts];
+        apptsForCalendar.pagination = newApptsForCalendar.pagination;
+        apptsForCalendar.stats = newApptsForCalendar.stats;
     }
 
     let currentOpenApptId = "";
@@ -39,8 +51,13 @@ const ApptsManager = (() => {
     // table
     const apptsTableContainer = document.getElementById("response-container-appts-table");
     const apptsTableFiltersForm = document.getElementById("form-appts-table-filters");
-
     const apptsLogContainer = editApptWindow.querySelector("[name='log-container']");
+
+    // home
+    const totalTodayAppts = document.getElementById("total-today-appts");
+    const nextApptContainer = document.getElementById("response-home-next-appt");
+    const todayPendingApptsTableContainer = document.getElementById("response-container-today-pending-appts-table");
+    const todayCompletedApptsTableContainer = document.getElementById("response-container-today-completed-appts-table");
 
     function populateAppointmentPatientFilter() {
         const patientSelector = apptsTableFiltersForm.querySelector("[name='filter-patients']");
@@ -228,6 +245,7 @@ const ApptsManager = (() => {
         toggleWindow();
         toggleDialog("dialog-appt-created-message")
         // message("Cita creada correctamente");
+        displayTodayAppts();
     }
     async function editAppt(event = false, apptId, patientId, ignoreTaken = false){
         if(event !== false) event.preventDefault();
@@ -278,8 +296,15 @@ const ApptsManager = (() => {
         editAppt(undefined, currentOpenApptId, apptDataset.patient_id, true)
     }
 
-    function openApptDataWindow(origin){
-        toggleWindow(`#${editApptWindow.id}`, "absolute", 1, true, true);
+    function openApptDataWindow(origin, options = {}){
+        if(options.scale === "undefined"){
+            options.scale = undefined
+        }else{
+            options.scale = 1;
+        }
+        // options.scale = options.scale ?? 1;
+
+        toggleWindow(`#${editApptWindow.id}`, "absolute", options.scale , true);
         const apptDataset = getDataset(origin);
         
         currentOpenApptId = apptDataset.id;
@@ -533,7 +558,7 @@ const ApptsManager = (() => {
                 // console.log("Se encontró la cita a actualizar en la lista")
                 apptList.data[index] = { ...apptList.data[index], ...newData };
             }
-
+            displayTodayAppts();
             // if appt got in or out of the visible date range, update the table
             if(rangeChange && syncData === "table"){
                 apptsForTable = await apptService.getAppts({filters: getFiltersValue()});
@@ -547,7 +572,9 @@ const ApptsManager = (() => {
                 apptList.data.splice(index, 1);
                 apptList.pagination.total_rows -= 1;
             }   
+            displayTodayAppts();
         } else if (action === "recover" && newData) {
+            displayTodayAppts();    
             // check if the appt got in or out of the visible dates range
             const rangeChange = checkRangeChanges(oldData, newData);
             // console.log(rangeChange);
@@ -579,6 +606,7 @@ const ApptsManager = (() => {
 
 
         }        
+        
 
         apptList.data.sort((a, b) => {
             // Compare dates first to avoid unnecessary time comparisons
@@ -587,6 +615,8 @@ const ApptsManager = (() => {
             // Only compare times if dates are equal
             return a.appt_time > b.appt_time ? -1 : a.appt_time < b.appt_time ? 1 : 0;
         });
+
+        // if(syncData === "calendar"){ displayTodayAppts(); }
     }
     
     function updateStats(delta, data, stats) {
@@ -984,6 +1014,110 @@ const ApptsManager = (() => {
         }
     }
 
+    async function displayTodayAppts(){
+        // Esta función mostrará las citas del día de hoy para la sección de inicio y todos los datos asociados en el inicio
+        // This function will display today's appointments for the home section and all the associated data in the home
+        // Aquí vamos a aprovechar que el calendario se carga por defeto en el mes actual, así estamos 100% seguros de que tenemos cargadas las citas del día
+        console.log("Mostrando citas del día");
+        const calendarAppts = apptsForCalendar.data;
+        const today = CalendarManager.convertToLocalTimezone(new Date());
+        const todayString = today.getFullYear() + '-' + 
+            String(today.getMonth() + 1).padStart(2, '0') + '-' + 
+            String(today.getDate()).padStart(2, '0');
+        
+        // Object with all today appts
+        const todayAppts = calendarAppts.filter(appt => appt.appt_date === todayString);
+
+        // Create pending appts table
+        const todayPendingAppts = todayAppts.filter(appt => Number(appt.appt_status) === 1).sort((a, b) => a.appt_time.localeCompare(b.appt_time));
+        const pendingApptsRows = buildTodayApptsTable(todayPendingAppts);
+        const pendingApptsFragment = document.createDocumentFragment();
+        pendingApptsRows.forEach(row => { pendingApptsFragment.appendChild(row); });
+        todayPendingApptsTableContainer.innerHTML = "";
+        todayPendingApptsTableContainer.appendChild(pendingApptsFragment);
+
+        // Create completed appts table
+        const todayCompletedAppts = todayAppts.filter(appt => Number(appt.appt_status) === 2).sort((a, b) => a.appt_time.localeCompare(b.appt_time));    
+        const completedApptsRows = buildTodayApptsTable(todayCompletedAppts);
+        const completedApptsFragment = document.createDocumentFragment();
+        completedApptsRows.forEach(row => { completedApptsFragment.appendChild(row); });
+        todayCompletedApptsTableContainer.innerHTML = "";
+        todayCompletedApptsTableContainer.appendChild(completedApptsFragment);
+
+        // set total today appts
+        const todayApptsCount = todayAppts.length;
+        totalTodayAppts.textContent = `${todayApptsCount} citas`;
+
+        // get the closest next pending appt
+        const sortedAppts = [...calendarAppts].sort((a, b) => {
+            const dateA = new Date(a.appt_date + "T" + a.appt_time);
+            const dateB = new Date(b.appt_date + "T" + b.appt_time);
+            return dateA - dateB;
+        });
+        const nextAppt = sortedAppts.find(appt => {
+            const apptDate = new Date(appt.appt_date + "T" + appt.appt_time);
+            return apptDate > today && 
+               Number(appt.appt_status) === 1 && 
+               Number(appt.row_status) === 1;
+        });
+
+        if(nextAppt){
+            const nextApptFormatedDate = (nextAppt.appt_date == todayString) ? "Hoy" : dateToShort(nextAppt.appt_date);   
+            nextApptContainer.innerHTML = `${nextApptFormatedDate}, ${timeToAmPm(nextAppt.appt_time)}, ${nextAppt.patient_name.split(' ')[0]}`;
+        }else{
+            nextApptContainer.innerHTML = "No hay citas pendientes";
+        }
+    }
+
+    function buildTodayApptsTable(appts){
+        const rows = [];
+        if(appts.length <= 0){
+            const row = document.createElement("div");
+            row.className = "simple-container padding-32 grow-1 direction-column gap-8 align-center justify-center user-select-none";
+            row.innerHTML = `
+                <md-icon class="outline-text" style="--md-icon-size:80px">person_celebrate</md-icon>
+                <span class="headline-small outline-text dm-sans weight-500">No hay citas</span>
+            `;
+            rows.push(row);
+            return rows;
+        }
+
+        appts.forEach(appt => {
+            const row = document.createElement("div");
+            row.className = "content-box border-radius-16 padding-16";
+
+            
+            const buttonIcon = (appt.appt_status == "1") ? "check" : "cancel";
+            const buttonText = (appt.appt_status == "1") ? "Marcar completada" : "Marcar pendiente";
+
+            row.innerHTML = `
+                <span class="body-large">${timeToAmPm(appt.appt_time)}, ${appt.patient_name}</span>
+                <div class="simple-container gap-8">
+                    <button class="style-2 hover-scale-small simple-container gap-4 align-center" active>
+                        <md-ripple></md-ripple>
+                        <md-icon class="dynamic">${buttonIcon}</md-icon>
+                        ${buttonText}
+                    </button>
+    
+                    <button 
+                        class="style-2 primary-container" 
+                        data-flip-id="animate"
+                        onclick="ApptsManager.openApptDataWindow(this.closest('[data-item_type=appt]'), {scale: 'undefined'})"
+                        >
+                        <md-ripple></md-ripple>
+                        <md-icon class="dynamic">edit</md-icon>
+                        Editar
+                    </button>
+    
+                </div>
+            `;
+
+            setApptDataset(appt, row);
+            rows.push(row);
+        });
+        return rows;
+    }
+
    
     return {
         openCreateApptWindow,
@@ -1005,6 +1139,7 @@ const ApptsManager = (() => {
         patientSelector,
         buildPatientsOptionList,
         editApptIgnoreTaken,
+        displayTodayAppts,
         currentOpenApptId: () => currentOpenApptId,
         appts: () => appts,
         apptsForTable: () => apptsForTable,

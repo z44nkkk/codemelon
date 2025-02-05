@@ -11,10 +11,10 @@ const calendarManager = (() => {
     const calendarExpandedDay = document.getElementById("sub-section-calendar-day");
 
     // date data
-    const currentDate = new Date();
+    const currentDate = convertToLocalTimezone(new Date());
     
-    function getDaysInMonth(month, year){ return new Date(year, month + 1, 0).getDate();}
-    function getFirstDayOfMonth(month, year){ return new Date(year, month, 1).getDay();}
+    function getDaysInMonth(month, year){ return convertToLocalTimezone(new Date(year, month + 1, 0)).getDate();}
+    function getFirstDayOfMonth(month, year){ return convertToLocalTimezone(new Date(year, month, 1)).getDay();}
 
     function createCalendarStructure(year, month) {
         const days = getDaysInMonth(month, year);
@@ -32,15 +32,15 @@ const calendarManager = (() => {
 
         // Create calendar days
         for(var day = 1; day <= days; day++){
-            const date = new Date(year, month, day);
+            const date = convertToLocalTimezone(new Date(year, month, day));
             date.setHours(12); // Set to noon to avoid DST issues
-            const cellDate = new Date(date.getTime() - (date.getTimezoneOffset() * 60000))
+            const cellDate = convertToLocalTimezone(new Date(date.getTime() - (date.getTimezoneOffset() * 60000)))
                 .toISOString().split('T')[0];
             // console.log(`Fecha: ${cellDate}`);
             // console.log(`Día: ${day}`);
             var dayCell = document.createElement("div");
             dayCell.setAttribute("data-flip-id", "animate");
-            dayCell.setAttribute("data-day", new Date(cellDate).getDate());
+            dayCell.setAttribute("data-day",convertToLocalTimezone(new Date(cellDate)).getDate());
             dayCell.setAttribute("data-cell-date", cellDate);
             dayCell.classList.add("calendar-day-cell");
 
@@ -68,7 +68,10 @@ const calendarManager = (() => {
             calendarContainer.appendChild(dayCell);
         }
 
-        const dateToday = new Date().toISOString().split('T')[0];
+        const dateTodayObject = new Date();
+        const dateToday = dateTodayObject.getFullYear() + '-' + 
+            String(dateTodayObject.getMonth() + 1).padStart(2, '0') + '-' + 
+            String(dateTodayObject.getDate()).padStart(2, '0');
         const todayCell = document.querySelector(`.calendar-day-cell[data-cell-date="${dateToday}"]`);
         if(todayCell) todayCell.classList.add("calendar-day-cell-today");
 

@@ -7,7 +7,9 @@ import CalendarManager from './managers/calendarManager.js';
 (async function main() {
     try {
         // 1. Configuración inicial
-        console.log('Iniciando aplicación...');
+        const appLoadingIndicator = document.getElementById("main-app-loading-indicator");
+        
+        // await ApptsManager.loadTodayAppts();
         
         // 2. Cargar datos iniciales
         await PatientsManager.loadPatients();
@@ -17,6 +19,7 @@ import CalendarManager from './managers/calendarManager.js';
         await ApptsManager.loadAppts();
         ApptsManager.displayApptsTable(undefined, true);
         ApptsManager.populateAppointmentPatientFilter();
+        ApptsManager.displayTodayAppts();
 
         await TrashManager.loadTrashItems();
 
@@ -37,7 +40,8 @@ import CalendarManager from './managers/calendarManager.js';
         // Configurar eventos globales
         setupGlobalEvents();
       
-        console.log('Aplicación lista.');
+        appLoadingIndicator.style.display = "none";
+        // console.log('Aplicación lista.');
     } catch (error) {
         console.error('Error al iniciar la aplicación:', error);
     }
