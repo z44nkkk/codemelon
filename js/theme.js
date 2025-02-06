@@ -76,3 +76,9 @@ function loadNav(){
 }
 
 loadNav();
+
+//
+// Desarrollado por Diego Josue Muñoz Muñoz
+// GitHub: https://github.com/z44nkkk
+// Basado en Stepbro Software: https://devbro.net
+//

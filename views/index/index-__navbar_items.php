@@ -14,7 +14,7 @@
       </span>
       <span class="simple-container align-center gap-8">
         <span class="only-on-mobile">Inicio</span>
-        <span class="hide-on-mobile">codemelon</span>
+        <span class="hide-on-mobile">devmelon</span>
       </span>
     </button>
   </div>
@@ -30,7 +30,7 @@
       </span>
       <span>Proyectos</span>
     </button>
-    <button 
+    <!-- <button 
       class="nav-button"
       id="direct-action-header-button" 
       data-flip-id="animate"
@@ -41,7 +41,7 @@
         <span class="material-symbols-rounded only-on-mobile">mail</span>
       </span>
       <span>Contáctanos</span>
-    </button>
+    </button> -->
 
     <button 
       class="nav-button"
@@ -87,7 +87,7 @@
 
 
 
-<!-- <button 
+<!--<button 
   class="nav-button"
   data-section="section-login" 
   onclick="toggleSection('section-login')"

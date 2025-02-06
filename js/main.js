@@ -29,8 +29,8 @@ function setupGlobalEvents(){
 
 }
 
-/**
- * Desarrollado por Luis David Elizarraraz Mondaca ("Davo")
- * GitHub: https://github.com/srdavo
- * Basado en Stepbro Software: https://stepbro.site
- */
+//
+// Desarrollado por Diego Josue Muñoz Muñoz
+// GitHub: https://github.com/z44nkkk
+// Basado en Stepbro Software: https://devbro.net
+//

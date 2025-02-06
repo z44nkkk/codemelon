@@ -18,12 +18,12 @@ const EmailManager = (() => {
             email: formEmail.value,
             message: formMessage.value
         }
-        await emailjs.send('service_8naz4po', 'template_oleuuq8', templateParams).then(
+        await emailjs.send("service_w0ssvcp","template_e1vwdhn", templateParams).then(
             (response) => {
                 message("¡Hemos recibido tu mensaje!", "success");
             },
             (error) => {
-                message("¡Algo salió mal! Inténtalo de nuevo.", "error");
+                message("¡Algo salió mal! Inténtalo de nuevo mas tarde.", "error");
                 console.log('message failed', error);
             },
         );
@@ -46,3 +46,9 @@ const EmailManager = (() => {
 })();
 
 export default EmailManager;
+
+//
+// Desarrollado por Diego Josue Muñoz Muñoz
+// GitHub: https://github.com/z44nkkk
+// Basado en Stepbro Software: https://devbro.net
+//

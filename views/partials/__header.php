@@ -41,10 +41,10 @@ checkSession($cookie_uid);
 
     <meta name="description" content="Empresa de desarrollo de software de verdadera calidad y enfoque en el detalle.">
     <meta name="author" content="Luis David Elizarraraz Mondaca ('Davo')">
-    <meta name="keywords" content="codemelon, carded, Stepbro Software, stepbro, Luis David Elizarraraz Mondaca, Davo, desarrollo web, software, aplicaciones">
+    <meta name="keywords" content="devmelon, carded, Boltbro Software, boltbro, Diego Josue Muñoz, Diego, desarrollo web, software, aplicaciones, diego, Diego Josue, Diego Josue Muñoz Muñoz, Josue">
     <meta name="robots" content="index, follow">
-    <meta property="og:title" content="Codemelon">
-    <meta property="og:url" content="https://codemelon.net">
+    <meta property="og:title" content="Devmelon">
+    <meta property="og:url" content="https://devmelon.net">
     <meta property="og:type" content="website">
 
     <!-- Manifest -->
@@ -57,34 +57,33 @@ checkSession($cookie_uid);
       
       switch ($current_url) {
         case 'mind':
-          echo "<link rel='shortcut icon' type='image/png' href='https://codemelon.net/apps/mind/assets/favicon.png'>";
-          echo '<link rel="manifest" href="'.BASE_URL.'apps/mind/back-end/config/site.webmanifest?v=1" >';
-          echo '
-            <meta property="og:title" content="Melon Mind" />
-            <meta property="og:description" content="Software profesional para psicólogos: Gestiona eficientemente pacientes, citas, expedientes clínicos, facturación y más en una sola plataforma integrada" />
-            <meta property="og:image" content="https://codemelon.net/apps/mind/assets/icon.png" />
-            <meta property="og:url" content="https://mind.codemelon.net" />
-            <meta property="og:type" content="website" />
-
-            <script type="application/ld+json">
-              {
-                "@context": "https://schema.org",
-                "@type": "WebApplication",
-                "name": "Melon Mind",
-                "description": "Software profesional para psicólogos: Gestiona eficientemente pacientes, citas, expedientes clínicos, facturación y más en una sola plataforma integrada",
-                "url": "https://mind.codemelon.net",
-                "image": "https://codemelon.net/apps/mind/assets/icon.png",
-                "applicationCategory": "ProductivityApplication",
-                "operatingSystem": "All"
-              }
-            </script>
-          ';
-          break;        
+            echo "<link rel='shortcut icon' type='image/png' href='https://devmelon.net/apps/mind/assets/favicon.png'>";
+            echo '<link rel="manifest" href="'.BASE_URL.'apps/mind/back-end/config/site.webmanifest?v=1" >';
+            echo '
+                <meta property="og:title" content="Devmelon Mind" />
+                <meta property="og:description" content="Software profesional para psicólogos: Gestiona eficientemente pacientes, citas, expedientes clínicos, facturación y más en una sola plataforma integrada" />
+                <meta property="og:image" content="https://devmelon.net/apps/mind/assets/icon.png" />
+                <meta property="og:url" content="https://bolt.devmelon.net" />
+                <meta property="og:type" content="website" />
+    
+                <script type="application/ld+json">
+                  {
+                    "@context": "https://schema.org",
+                    "@type": "WebApplication",
+                    "name": "Devmelon Bolt",
+                    "description": "Software profesional para psicólogos: Gestiona eficientemente pacientes, citas, expedientes clínicos, facturación y más en una sola plataforma integrada",
+                    "url": "https://bolt.devmelon.net",
+                    "image": "https://devmelon.net/apps/mind/assets/icon.png",
+                    "applicationCategory": "ProductivityApplication",
+                    "operatingSystem": "All"
+                  }
+                </script>
+            ';
+            break;        
         default:
-          echo "<link rel='shortcut icon' type='image/png' href='https://codemelon.net/assets/icon.png'>";
-          break;
-      }
-
+            echo "<link rel='shortcut icon' type='image/png' href='https://devmelon.net/assets/icon.png'>";
+            break;
+    }
     ?>
     
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">

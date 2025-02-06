@@ -7,10 +7,9 @@
         
 
         <div class="simple-container" style="gap:-8px">
-          <span class="index-letter">c</span>
-          <span class="index-letter">o</span>
           <span class="index-letter">d</span>
           <span class="index-letter">e</span>
+          <span class="index-letter">v</span>
           <span class="index-letter">m</span>
           <span class="index-letter">e</span>
           <span class="index-letter">l</span>
@@ -189,7 +188,7 @@
               <rect y="0.696289" width="14.6076" height="14.6076" rx="7.30381" fill="var(--md-sys-color-on-background)"/>
               <rect x="16.5786" y="0.696289" width="7.42162" height="14.6076" rx="3.71081" fill="var(--md-sys-color-on-background)"/>
             </svg>
-            <span class="poppins weight-600 headline-medium">codemelon</span>
+            <span class="poppins weight-600 headline-medium">devmelon</span>
           </div>
           <p class="outline-text dm-sans">Tu empresa de desarrollo web de confianza.</p>
         </div>
@@ -200,7 +199,7 @@
           <div class="simple-container">
             <button class="style-4 background on-background-text dm-sans" id="copy-contact-email">
               <md-icon class="filled primary-text">mail</md-icon>
-              <span id="copy-contact-email-value">codemelonsoftware@gmail.com</span>
+              <span id="copy-contact-email-value">deevmelonn@gmail.com</span>
               <md-ripple></md-ripple>
             </button>
           </div>

@@ -36,6 +36,17 @@
                     </md-filled-button>
                 </div>
 
+                <div class="simple-container direction-column width-100 user-select-none gap-8">
+                <span class="display-small dm-sans weight-500 line-height-0-95 on-background-text">Discord</span>
+                <span class="body-large outline-text bottom-margin-8">
+                    Si no funciona este formulario de contacto, agradeceriamos que entrara en nuestro servidor de Discord y lo avisara!
+                </span>
+                <md-filled-button href="https://discord.gg/P3fdqDXuSR" value="" has-icon="">
+                        <md-icon slot="icon" aria-hidden="true">link</md-icon>
+                        <span data-text-content="">Unirse</span>
+                    </md-filled-button>
+            </div>
+
             </div>
 
             </form>

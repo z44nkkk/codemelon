@@ -840,3 +840,9 @@ function flowChilds(parent, options = {startOpacity: 0, animationVariant: "", be
 // function lazyLoad(){
 
 // }
+
+//
+// Desarrollado por Diego Josue Muñoz Muñoz
+// GitHub: https://github.com/z44nkkk
+// Basado en Stepbro Software: https://devbro.net
+//
